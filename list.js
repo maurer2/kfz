@@ -9,7 +9,7 @@ module.exports = class List {
     getList() {
         return new Promise((resolve, reject) => {
             // Faux Ajax 
-            //if (Object.keys(this.list).length === 0) {
+            if (Object.keys(this.list).length === 0) {
                 setTimeout(() => {
                     const dummyList = {
                         'B': 'Berlin',
@@ -23,12 +23,12 @@ module.exports = class List {
                         'BLK': 'Burgenlandkreis',
                         'BIT': 'Bitterfeld',
                     }
-                    //this.list = dummyList;
+                    this.list = dummyList;
                     resolve(dummyList);
                 }, 100);
-            //} else {
-            //   resolve(this.list);
-            //}
+            } else {
+                resolve(this.list);
+            }
         });
     }
 
