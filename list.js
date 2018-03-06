@@ -8,7 +8,7 @@ module.exports = class List {
 
     getList() {
         return new Promise((resolve, reject) => {
-            // Faux Ajax 
+            // Faux Ajax
             if (Object.keys(this.list).length === 0) {
                 setTimeout(() => {
                     const dummyList = {
@@ -35,7 +35,7 @@ module.exports = class List {
     getNumberOfEntries() {
         return this.getList().then((list) => {
             return Object.keys(list).length;
-        }); 
+        });
     }
 
     getEntriesWithLetter(letterString) {

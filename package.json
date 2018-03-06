@@ -1,0 +1,18 @@
+{
+  "name": "kfz-app",
+  "version": "1.0.0",
+  "description": "licence plate list",
+  "main": "index.js",
+  "repository": "https://github.com/maurer2/kfz.git",
+  "author": "Martin <mr.mmaurer+work@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.18.2",
+    "mocha": "^5.0.2"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  }
+}
