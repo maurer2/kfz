@@ -5,8 +5,8 @@ class LicencePlate {
         this.length = plate.length;
 
         if (!this.lengt || this.length > 2) {
-            throw new Error('LicencePlate length error'); 
-        } 
+            throw new Error('LicencePlate length error');
+        }
     }
 
     getPlate() {

@@ -1,8 +1,8 @@
 //import { LicencePlate } from './licencePlate'
 
 module.exports = class List {
-    constructor ({ countryCode = 'de' }) {
-        this.countryCode = countryCode;
+    constructor () {
+        this.countryCode = 'de'
         this.list = {};
     }
 
