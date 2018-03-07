@@ -1,4 +1,5 @@
 //import { LicencePlate } from './licencePlate'
+const axios = require('axios');
 
 module.exports = class List {
     constructor () {
@@ -7,6 +8,17 @@ module.exports = class List {
     }
 
     getList() {
+        // ../node_modules/http-server/bin/http-server
+        // http://127.0.0.1:8080/de.json
+        axios.get('http://127.0.0.1:8080/de.json')
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+
+
         return new Promise((resolve, reject) => {
             // Faux Ajax
             if (Object.keys(this.list).length === 0) {
@@ -21,7 +33,6 @@ module.exports = class List {
                         'H': 'Hannover',
                         'HH': 'Hamburg',
                         'BLK': 'Burgenlandkreis',
-                        'BIT': 'Bitterfeld',
                     }
                     this.list = dummyList;
                     resolve(dummyList);
