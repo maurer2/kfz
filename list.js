@@ -8,35 +8,18 @@ module.exports = class List {
     }
 
     getList() {
-        // ../node_modules/http-server/bin/http-server
-        // http://127.0.0.1:8080/de.json
-        axios.get('http://127.0.0.1:8080/de.json')
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-
-
         return new Promise((resolve, reject) => {
-            // Faux Ajax
             if (Object.keys(this.list).length === 0) {
-                setTimeout(() => {
-                    const dummyList = {
-                        'B': 'Berlin',
-                        'BIT': 'Bitterfeld',
-                        'M': 'München',
-                        'MSH': 'Mannsfeld-Südharz',
-                        'K': 'Köln',
-                        'KA': 'Karlsruhe',
-                        'H': 'Hannover',
-                        'HH': 'Hamburg',
-                        'BLK': 'Burgenlandkreis',
-                    }
-                    this.list = dummyList;
-                    resolve(dummyList);
-                }, 100);
+                // ../node_modules/http-server/bin/http-server
+                // http://127.0.0.1:8080/de.json
+                axios.get('http://127.0.0.1:8080/de.json')
+                    .then((response) => {
+                        this.list = response.data;
+                        resolve(response.data);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             } else {
                 resolve(this.list);
             }
