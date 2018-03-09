@@ -46,4 +46,18 @@ module.exports = class List {
             });
         });
     }
+
+    getExtractedLetters(nestedLetters = {}) {
+        const letterList = Object.keys(nestedLetters);
+
+        return letterList;
+    }
+
+    getUniqueLetters(letterList = []) {
+        const letters = letterList.map((value) => value.charAt(0));
+        const uniqueLetters = letters.filter((value, index, array) =>
+          array.indexOf(value) === index);
+
+        return uniqueLetters;
+    }
 }

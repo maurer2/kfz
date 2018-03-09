@@ -2,15 +2,26 @@
 const ListProvider = require('./list.js');
 
 // Main
-const key = process.argv[2] || 'blk';
+//const key = process.argv[2] || 'blk';
 const keyListProvider = new ListProvider('de');
-const keyList = keyListProvider.getList().then((list) => {
-    //console.log('list', list);
-})
+//const keyList = keyListProvider.getList().then((list) => {
+//    //console.log('list', list);
+//})
 
-// node app.js plate=b
-console.log('kfz app', key);
+// List all with letter B
+keyListProvider.getEntriesWithLetter('Z').then((matches) => {
+    console.log('matches for Z:', matches);
+});
 
-keyListProvider.getEntriesWithLetter('B').then((matches) => {
-    console.log(matches);
+// List all with letter B
+keyListProvider.getEntriesWithLetter('Z').then((matches) => {
+    console.log('matches for Z:', matches);
+});
+
+// List all possible letters at pos1
+keyListProvider.getList().then((list) => {
+    const lettersArray = keyListProvider.getExtractedLetters(list)
+    const lettersUnique = keyListProvider.getUniqueLetters(lettersArray);
+
+    console.log(`unique letters (${lettersUnique.length}): ${lettersUnique}`);
 });
