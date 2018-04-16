@@ -1,5 +1,6 @@
 //import { LicencePlate } from './licencePlate'
-const axios = require('axios');
+const licenceJSON = require('./data/de.json');
+//const axios = require('axios');
 
 module.exports = class List {
     constructor () {
@@ -10,16 +11,7 @@ module.exports = class List {
     getList() {
         return new Promise((resolve, reject) => {
             if (Object.keys(this.list).length === 0) {
-                // ../node_modules/http-server/bin/http-server
-                // http://127.0.0.1:8080/de.json
-                axios.get('http://127.0.0.1:8080/de.json')
-                    .then((response) => {
-                        this.list = response.data;
-                        resolve(response.data);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                resolve(licenceJSON);
             } else {
                 resolve(this.list);
             }
@@ -55,8 +47,7 @@ module.exports = class List {
 
     getUniqueLetters(letterList = []) {
         const letters = letterList.map((value) => value.charAt(0));
-        const uniqueLetters = letters.filter((value, index, array) =>
-          array.indexOf(value) === index);
+        const uniqueLetters = letters.filter((value, index, array) => array.indexOf(value) === index);
 
         return uniqueLetters;
     }
