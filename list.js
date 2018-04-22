@@ -1,6 +1,5 @@
-//import { LicencePlate } from './licencePlate'
-const licenceJSON = require('./data/de.json');
-//const axios = require('axios');
+const licenceJSON = require('./data/de.json')
+//const axios = require('axios')
 
 module.exports = class List {
     constructor () {
@@ -13,18 +12,18 @@ module.exports = class List {
             resolve(this.list)
             /*
             if (Object.keys(this.list).length === 0) {
-                resolve(licenceJSON);
+                resolve(licenceJSON)
             } else {
-                resolve(this.list);
+                resolve(this.list)
             }
             */
-        });
+        })
     }
 
     getNumberOfEntries() {
         return this.getList().then((list) => {
             return Object.keys(list).length
-        });
+        })
     }
 
     getEntriesWithLetter(letterString) {
@@ -36,8 +35,8 @@ module.exports = class List {
                 const filteredList = listArray.filter(value => value.charAt(0) === letter)
 
                 resolve(filteredList)
-            });
-        });
+            })
+        })
     }
 
     getExtractedLetters(nestedLetters = {}) {
