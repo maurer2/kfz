@@ -9,8 +9,8 @@ const keyListProvider = new ListProvider('de');
 //})
 
 // List all with letter B
-keyListProvider.getEntriesWithLetter('Z').then((matches) => {
-    console.log('matches for Z:', matches);
+keyListProvider.getEntriesWithLetter('V').then((matches) => {
+    console.log('matches for V:', matches);
 });
 
 // List all with letter B
@@ -23,5 +23,5 @@ keyListProvider.getList().then((list) => {
     const lettersArray = keyListProvider.getExtractedLetters(list)
     const lettersUnique = keyListProvider.getUniqueLetters(lettersArray);
 
-    console.log(`unique letters (${lettersUnique.length}): ${lettersUnique}`);
+    console.log(`unique letters pos1 (${lettersUnique.length}): ${lettersUnique}`);
 });
