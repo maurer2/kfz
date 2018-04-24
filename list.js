@@ -1,56 +1,71 @@
 const licenceJSON = require('./data/de.json')
-//const axios = require('axios')
 
 module.exports = class List {
     constructor () {
         this.countryCode = 'de'
         this.list = licenceJSON
+        this.position = 0
     }
 
-    getList() {
-        return new Promise((resolve, reject) => {
-            resolve(this.list)
-            /*
-            if (Object.keys(this.list).length === 0) {
-                resolve(licenceJSON)
-            } else {
-                resolve(this.list)
-            }
-            */
-        })
+    getList(asArray = true) {
+        if (asArray) {
+            return Object.keys(this.list)
+        }
+
+        return this.list
+    }
+
+    setList(list) {
+        this.list = list
+    }
+
+    getPosition() {
+        return this.position
+    }
+
+    setPosition(position) {
+        this.position = position
     }
 
     getNumberOfEntries() {
-        return this.getList().then((list) => {
-            return Object.keys(list).length
-        })
+        return this.getList(true).length
     }
 
-    getEntriesWithLetter(letterString) {
-        return new Promise((resolve, reject) => {
-            const letter = letterString.charAt(0)
+    getEntriesWithStartingLetter(letter) {
+        const filteredList = this.getList(true).filter(value => value.charAt(0) === letter.charAt(0))
 
-            this.getList().then((list) => {
-                const listArray = Object.keys(list)
-                const filteredList = listArray.filter(value => value.charAt(0) === letter)
-
-                resolve(filteredList)
-            })
-        })
+        return filteredList
     }
 
-    getExtractedLetters(nestedLetters = {}) {
-        const letterList = Object.keys(nestedLetters)
-
-        return letterList
-    }
-
-    getUniqueLetters(letterList = [], position = 0) {
-        const lettersSingle = letterList.map((value) => value.charAt(position))
+    getUniqueLetters() {
+        const lettersSingle = this.getList(true).map(value => value.charAt(0))
         // true for first occurence in array // indexof return first index of element found
-        const lettersUnique= lettersSingle.filter((value, index, array) => array.indexOf(value) === index)
+        const lettersUnique = lettersSingle.filter((value, index, array) => array.indexOf(value) === index)
 
         return lettersUnique
     }
 
+    resetList() {
+        this.list = require('./data/de.json')
+        this.position = 0
+    }
+
+    reduceListByOneLevel(letter) {
+        const matchingEntries = this.getEntriesWithStartingLetter(letter)
+        // poor
+        console.log(`size before ${this.getNumberOfEntries()}`)
+        this.getList(true).forEach(element => {
+            const isMatch = (matchingEntries.indexOf(element) != -1) ? true : false
+
+            if (!isMatch) {
+                delete this.list[element]
+
+                return
+            }
+        })
+        console.log(`size after ${this.getNumberOfEntries()}`)
+        this.position++
+
+        return matchingEntries
+    }
 }
