@@ -1,46 +1,32 @@
 const licenceJSON = require('./data/de.json')
+const LicencePlate = require('./licencePlate.js')
 
 module.exports = class List {
-    constructor () {
-        this.countryCode = 'de'
-        this.list = licenceJSON
-        this.position = 0
+    constructor() {
+        this.entries = Object.keys(licenceJSON).map((key) => {
+            const value = licenceJSON[key]
+            const entry = new LicencePlate(key, value)
+
+            return entry
+        })
     }
 
-    getList(asArray = true) {
-        if (asArray) {
-            return Object.keys(this.list)
-        }
-
-        return this.list
+    getTotalSize() {
+        return this.entries.length
     }
 
-    setList(list) {
-        this.list = list
-    }
+    getEntriesWithLetter(letter) {
+        const filteredEntries = this.entries.filter(entry => entry.startsWith(letter))
 
-    getPosition() {
-        return this.position
-    }
-
-    setPosition(position) {
-        this.position = position
-    }
-
-    getNumberOfEntries() {
-        return this.getList(true).length
-    }
-
-    getEntriesWithStartingLetter(letter) {
-        const filteredList = this.getList(true).filter(value => value.charAt(0) === letter.charAt(0))
-
-        return filteredList
+        return filteredEntries
     }
 
     getUniqueLetters() {
-        const lettersSingle = this.getList(true).map(value => value.charAt(0))
-        // true for first occurence in array // indexof return first index of element found
-        const lettersUnique = lettersSingle.filter((value, index, array) => array.indexOf(value) === index)
+        const lettersSingle = this.entries.map(entry => entry.getFirstLetter())
+        const lettersSingleSorted = lettersSingle.slice().sort() // alphabetically
+
+        // true for first occurence in array // indexof returns first index of element found
+        const lettersUnique = lettersSingleSorted.filter((value, index, array) => array.indexOf(value) === index)
 
         return lettersUnique
     }
@@ -52,6 +38,7 @@ module.exports = class List {
 
     reduceListByOneLevel(letter) {
         const matchingEntries = this.getEntriesWithStartingLetter(letter)
+
         // poor
         console.log(`size before ${this.getNumberOfEntries()}`)
         this.getList(true).forEach(element => {
@@ -69,3 +56,5 @@ module.exports = class List {
         return matchingEntries
     }
 }
+
+module.exports.List

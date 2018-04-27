@@ -3,26 +3,24 @@ const ListProvider = require('./list.js')
 
 // Main
 //const key = process.argv[2] || 'blk'
-const keyListProvider = new ListProvider('de')
-//const keyList = keyListProvider.getList().then((list) => {
-//    //console.log('list', list)
-//})
+const keyListProvider = new ListProvider()
 
 // get total list
-//const list = keyListProvider.getList()
+const listSize = keyListProvider.getTotalSize()
+console.log(listSize)
+
+// List all with letter V
+const testEntries = keyListProvider.getEntriesWithLetter('V')
+console.log('matches for V:', testEntries)
 
 // List all with letter B
-const testEntry = keyListProvider.getEntriesWithStartingLetter('V')
-console.log('matches for V:', testEntry)
-
-// List all with letter B
-const testEntry2 = keyListProvider.getEntriesWithStartingLetter('Z')
-console.log('matches for Z:', testEntry2)
+const testEntriesB = keyListProvider.getEntriesWithLetter('B')
+console.log('matches for B:', testEntriesB)
 
 // List all possible letters at pos1
 const lettersUnique = keyListProvider.getUniqueLetters()
 console.log(`unique letters pos1 (${lettersUnique.length}): ${lettersUnique}`);
 
 // Reduce
-const reduced = keyListProvider.reduceListByOneLevel('V')
-console.log(`test (${reduced.length}): ${reduced}`);
+//const reduced = keyListProvider.reduceListByOneLevel('V')
+//console.log(`test (${reduced.length}): ${reduced}`);
