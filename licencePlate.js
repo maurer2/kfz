@@ -22,23 +22,19 @@ module.exports = class LicencePlate {
     return this.country
   }
 
-  getFirstLetter() {
-    return this.key.charAt(0);
-  }
-
-  isSingleLetter() {
-    return this.key.length === 1;
-  }
-
-  isDoubleLetter() {
-    return this.key.length === 2;
-  }
-
-  isTrippleLetter() {
-    return this.key.length === 3;
+  getLetterAtPosition(position) {
+    return this.key.charAt(position)
   }
 
   startsWith(letter) {
     return this.key.charAt(0) === letter.charAt(0)
+  }
+
+  hasLetterAtPosition(position, letter) {
+    if (position > this.key.length) {
+      return false
+    }
+
+    return this.key.charAt(position) === letter
   }
 }

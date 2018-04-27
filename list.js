@@ -3,16 +3,22 @@ const LicencePlate = require('./licencePlate.js')
 
 module.exports = class List {
   constructor() {
-    this.entries = Object.keys(licenceJSON).map((key) => {
-      const value = licenceJSON[key]
-      const entry = new LicencePlate(key, value)
+    this.entriesAll = Object.keys(licenceJSON).map((key) => {
+      const entry = new LicencePlate(key, licenceJSON[key])
 
       return entry
     })
+
+    this.entries = this.entriesAll.slice()
+    this.position = 0
   }
 
-  getTotalSize() {
+  getCurrentSize() {
     return this.entries.length
+  }
+
+  getEntries() {
+    return this.entries
   }
 
   getEntriesWithLetter(letter) {
@@ -22,7 +28,8 @@ module.exports = class List {
   }
 
   getUniqueLetters() {
-    const lettersSingle = this.entries.map(entry => entry.getFirstLetter())
+    const lettersSingle = this.entries
+      .map(entry => entry.getLetterAtPosition(this.position))
     const lettersSingleSorted = lettersSingle.slice().sort() // alphabetically
 
     // true for first occurence in array // indexof returns first index of element found
@@ -32,28 +39,16 @@ module.exports = class List {
     return lettersUnique
   }
 
-  resetList() {
-    // this.list = require('./data/de.json')
-    this.position = 0
-  }
-
-  reduceListByOneLevel(letter) {
-    const matchingEntries = this.getEntriesWithStartingLetter(letter)
-
-    // poor
-    console.log(`size before ${this.getNumberOfEntries()}`)
-
-    this.getList(true).forEach((element) => {
-      const isMatch = (matchingEntries.indexOf(element) !== -1) ? true : false
-
-      if (!isMatch) {
-        delete this.list[element]
-      }
-    })
-
-    console.log(`size after ${this.getNumberOfEntries()}`)
+  filterList(letter) {
+    this.entries = this.entries
+      .filter(entry => entry.hasLetterAtPosition(this.position, letter))
     this.position = this.position + 1
 
-    return matchingEntries
+    return this.entries
+  }
+
+  resetList() {
+    this.entries = this.entriesAll
+    this.position = 0
   }
 }
