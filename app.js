@@ -2,7 +2,7 @@
 const ListProvider = require('./list.js')
 
 // Main
-//const key = process.argv[2] || 'blk'
+// const key = process.argv[2] || 'blk'
 const keyListProvider = new ListProvider()
 
 // get total list
@@ -22,5 +22,5 @@ const lettersUnique = keyListProvider.getUniqueLetters()
 console.log(`unique letters pos1 (${lettersUnique.length}): ${lettersUnique}`);
 
 // Reduce
-//const reduced = keyListProvider.reduceListByOneLevel('V')
-//console.log(`test (${reduced.length}): ${reduced}`);
+// const reduced = keyListProvider.reduceListByOneLevel('V')
+// console.log(`test (${reduced.length}): ${reduced}`);
