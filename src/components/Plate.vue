@@ -1,36 +1,54 @@
 <template>
-  <a href="" type="button" class="plate">
-    <div class="plate-key">
-      {{ plate.key }}
-    </div>
-    <div class="plate-district">
-      {{ plate.district }}
-    </div>
-    <div class="plate-state">
-      {{ plate.state }}
-    </div>
+  <a href="#" class="plate" :class="{ 'plate--is-expanded': isExpanded }" @click.prevent="toggleContent">
+    <dl class="plate-wrapper">
+      <dt class="plate-key">
+        {{ plate.key }}
+      </dt>
+      <dd class="plate-value">
+        {{ plate.district }}, {{ plate.state }}
+      </dd>
+    </dl>
   </a>
 </template>
 
 <script>
 export default {
   name: 'Plate',
-  props: ['plate'],
+  props: ['plate', 'index'],
+  data: function() {
+    return {
+      isExpanded: (this.index === 0) ? true : false
+    }
+  },
+  methods: {
+    toggleContent: function() {
+      console.log('click');
+      this.isExpanded = !this.isExpanded;
+    },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
   .plate {
+    padding: 15px 0;
     border-bottom: 1px solid #fff;
     font-weight: bold;
+    text-decoration: none;
+  }
+  .plate-wrapper {
+    margin: 0;
   }
   .plate-key {
     color: #fff;
   }
-  .plate-district {
+  .plate-value {
+    display: none;
+    margin: 0;
     color: #fff;
-  }
-  .plate-state {
-    color: #fff;
+
+    .plate--is-expanded & {
+      display: block;
+    }
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <ul class="plates">
-    <li class="plate" v-for="entry in entries" :key="entry.key">
-      <plate :plate="entry"></plate>
+    <li class="plate" v-for="(entry, index) in entries" :key="entry.key">
+      <plate :plate="entry" :index="index"></plate>
     </li>
   </ul>
 </template>
