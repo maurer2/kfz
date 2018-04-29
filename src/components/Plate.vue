@@ -1,13 +1,13 @@
 <template>
   <a href="" type="button" class="plate">
     <div class="plate-key">
-      {{ plateKey }}
+      {{ plate.key }}
     </div>
     <div class="plate-district">
-      {{ district }}
+      {{ plate.district }}
     </div>
     <div class="plate-state">
-      {{ state }}
+      {{ plate.state }}
     </div>
   </a>
 </template>
@@ -15,13 +15,7 @@
 <script>
 export default {
   name: 'Plate',
-  props: ['plateKey'],
-  data() {
-    return {
-      district: 'Test District',
-      state: 'Test State',
-    };
-  },
+  props: ['plate'],
 };
 </script>
 

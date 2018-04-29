@@ -1,7 +1,7 @@
 <template>
   <ul class="plates">
-    <li class="plate" v-for="n in numEntries" :key="n">
-      <plate v-bind:plateKey="n"></plate>
+    <li class="plate" v-for="entry in entries" :key="entry.key">
+      <plate :plate="entry"></plate>
     </li>
   </ul>
 </template>
@@ -15,17 +15,16 @@ export default {
   components: { Plate },
   computed: {
     numEntries() {
-      return 50;
+      return this.entries.length;
     },
-    title() {
-      return `Liste ${this.numEntries}`;
-    },
+  },
+  created: function() {
+    const list = new List();
+    this.entries = list.entries
   },
   mounted: function() {
-    console.log('mounted');
-    const plateList = new List();
-    console.log(plateList.getCurrentSize());
-  },
+    console.log('size list:', this.entries.length);
+  }
 };
 </script>
 
