@@ -8,17 +8,23 @@
 
 <script>
 import Plate from './Plate';
+import List from '../filter/List';
 
 export default {
   name: 'PlateList',
   components: { Plate },
   computed: {
     numEntries() {
-      return 500;
+      return 50;
     },
     title() {
       return `Liste ${this.numEntries}`;
     },
+  },
+  mounted: function() {
+    console.log('mounted');
+    const plateList = new List();
+    console.log(plateList.getCurrentSize());
   },
 };
 </script>
@@ -28,5 +34,9 @@ export default {
     display: flex;
     margin: 0;
     flex-direction: column;
+  }
+  .plate {
+    display: block;
+    margin: 0;
   }
 </style>

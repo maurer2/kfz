@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss" scoped>
   .plate {
+    border-bottom: 1px solid #fff;
     font-weight: bold;
   }
   .plate-key {

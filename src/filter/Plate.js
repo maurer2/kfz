@@ -1,4 +1,4 @@
-module.exports = class LicencePlate {
+class LicencePlate {
   constructor(key, { district, state, country = 'de' }) {
     this.key = key;
     this.district = district;
@@ -19,22 +19,24 @@ module.exports = class LicencePlate {
   }
 
   getState() {
-    return this.country
+    return this.country;
   }
 
   getLetterAtPosition(position) {
-    return this.key.charAt(position)
+    return this.key.charAt(position);
   }
 
   startsWith(letter) {
-    return this.key.charAt(0) === letter.charAt(0)
+    return this.key.charAt(0) === letter.charAt(0);
   }
 
   hasLetterAtPosition(position, letter) {
     if (position > this.key.length) {
-      return false
+      return false;
     }
 
-    return this.key.charAt(position) === letter
+    return this.key.charAt(position) === letter;
   }
 }
+
+export default LicencePlate;
