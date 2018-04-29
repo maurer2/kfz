@@ -1,7 +1,15 @@
 <template>
-  <button type="button" class="plate">
-    {{ plateKey }}
-  </button>
+  <a href="" type="button" class="plate">
+    <div class="plate-key">
+      {{ plateKey }}
+    </div>
+    <div class="plate-district">
+      {{ district }}
+    </div>
+    <div class="plate-state">
+      {{ state }}
+    </div>
+  </a>
 </template>
 
 <script>
@@ -10,15 +18,24 @@ export default {
   props: ['plateKey'],
   data() {
     return {
-      plate: 'A',
+      district: 'Test District',
+      state: 'Test State',
     };
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .plate {
-    color: black;
     font-weight: bold;
+  }
+  .plate-key {
+    color: #fff;
+  }
+  .plate-district {
+    color: #fff;
+  }
+  .plate-state {
+    color: #fff;
   }
 </style>

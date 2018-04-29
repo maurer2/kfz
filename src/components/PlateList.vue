@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-for="n in numEntries" :key="n">
+  <ul class="plates">
+    <li class="plate" v-for="n in numEntries" :key="n">
       <plate v-bind:plateKey="n"></plate>
     </li>
   </ul>
@@ -14,7 +14,7 @@ export default {
   components: { Plate },
   computed: {
     numEntries() {
-      return 5000;
+      return 500;
     },
     title() {
       return `Liste ${this.numEntries}`;
@@ -23,9 +23,10 @@ export default {
 };
 </script>
 
-<style scoped>
-  .plateList {
-    color: black;
-    font-weight: bold;
+<style lang="scss" scoped>
+  .plates {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
   }
 </style>

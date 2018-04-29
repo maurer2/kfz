@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{ 'wrapper--is-vibrant': oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
       <plateList></plateList>
@@ -14,14 +14,23 @@ import PlateList from './PlateList';
 export default {
   name: 'Main',
   components: { PlateList },
+  computed: {
+    oledDevice() {
+      return true;
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .wrapper {
     display: flex;
-    height: 100%;
+    min-height: 100%;
     flex-direction: column;
+
+    &--is-vibrant {
+      background: black;
+    }
   }
 
   .header {
