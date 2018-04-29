@@ -1,7 +1,7 @@
 {
-  "name": "kfz",
+  "name": "my-project",
   "version": "1.0.0",
-  "description": "kfz",
+  "description": "A Vue.js project",
   "author": "Martin <mr.mmaurer+work@gmail.com>",
   "private": true,
   "scripts": {
@@ -11,16 +11,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^7.2.3",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",

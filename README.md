@@ -1,6 +1,6 @@
-# kfz
+# my-project
 
-> kfz
+> A Vue.js project
 
 ## Build Setup
 
