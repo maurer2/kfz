@@ -1,4 +1,4 @@
-import licenceJSON from '../data/de.json';
+import licenceJSON from '../assets/de.json';
 import Plate from './Plate';
 
 class List {

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import Plate from './Plate';
-import List from '../filter/List';
+import Plate from './Plate.vue';
+import List from './List';
 
 export default {
-  name: 'PlateList',
+  name: 'List',
   components: { Plate },
   computed: {
     numEntries() {

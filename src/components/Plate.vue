@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="plate" :class="{ 'plate--is-expanded':isExpanded }"
+  <a href="#" class="plate" :class="{ 'plate--is-expanded': isExpanded }"
     @click.prevent="toggleContent">
     <dl class="plate-wrapper">
       <dt class="plate-key">
@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     toggleContent() {
-      console.log('click');
       this.isExpanded = !this.isExpanded;
     },
   },

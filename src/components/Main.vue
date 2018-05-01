@@ -2,18 +2,20 @@
   <div class="wrapper" :class="{ 'wrapper--is-vibrant': oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
-      <plateList></plateList>
+      <Navigation></Navigation>
+      <List></List>
     </main>
     <footer class="footer">Footer</footer>
   </div>
 </template>
 
 <script>
-import PlateList from './PlateList';
+import Navigation from './Navigation';
+import List from './List.vue';
 
 export default {
   name: 'Main',
-  components: { PlateList },
+  components: { Navigation, List },
   data() {
     return {
       oledDevice: false,
@@ -27,6 +29,7 @@ export default {
     display: flex;
     min-height: 100%;
     flex-direction: column;
+    background: #c3c3c3;
 
     &--is-vibrant {
       background: black;
