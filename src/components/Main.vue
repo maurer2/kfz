@@ -2,7 +2,7 @@
   <div class="wrapper" :class="{ 'wrapper--is-vibrant': oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
-      <Navigation></Navigation>
+      <Navigation :inactiveLetters="inactiveLetters"></Navigation>
       <List></List>
     </main>
     <footer class="footer">Footer</footer>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       oledDevice: false,
+      inactiveLetters: ['a', 'k', 'l'],
     };
   },
 };

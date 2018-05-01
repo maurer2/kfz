@@ -1,8 +1,10 @@
 <template>
   <nav class="nav">
     <template v-for="letter in letters">
-      <button class="nav-entry" type="button" :class="{ 'nav-entry--is-inactive': letterState }"
-        :key="letter">{{ letter }}</button>
+      <button class="nav-entry" type="button" :key="letter" @click="drillDown()"
+        :class="{ 'nav-entry--is-inactive': checkInactivity(letter) }">
+        {{ letter | uppercase }}
+      </button>
     </template>
   </nav>
 </template>
@@ -10,10 +12,18 @@
 <script>
 export default {
   name: 'Navigation',
+  props: {
+    inactiveLetters: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      letters: 'a,ä,b,c,d,e,f,g,h,i,j,k,l,m,n,o,ö,p,q,r,s,t,u,ü,v,w,x,y,z'.split(','),
-      lettersInactive: ['a', 'p', 'z'],
+      letters: [
+        'a', 'ä', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'ö', 'p', 'q',
+        'r', 's', 'ß', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z',
+      ],
     };
   },
   computed: {
@@ -21,11 +31,18 @@ export default {
       return false;
     },
   },
-  created() {
-    console.log('created');
+  methods: {
+    checkInactivity(letter) {
+      return this.inactiveLetters.includes(letter);
+    },
+    drillDown() {
+
+    },
   },
-  mounted() {
-    console.log('mounted');
+  filters: {
+    uppercase(value) {
+      return value.toUpperCase();
+    },
   },
 };
 </script>
@@ -38,9 +55,14 @@ export default {
     background: black;
   }
   .nav-entry {
-    padding: 10px;
+    padding: 10px 0;
     background: #fff;
     flex-grow: 1;
     flex-basis: 0;
+
+    &--is-inactive {
+      color: #c2c2c2;
+      pointer-events: none;
+    }
   }
 </style>
