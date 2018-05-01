@@ -18,13 +18,13 @@ export default {
       return this.entries.length;
     },
   },
-  created: function() {
+  created() {
     const list = new List();
-    this.entries = list.entries
+    this.entries = list.entries;
   },
-  mounted: function() {
+  mounted() {
     console.log('size list:', this.entries.length);
-  }
+  },
 };
 </script>
 

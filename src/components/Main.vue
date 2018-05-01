@@ -14,10 +14,10 @@ import PlateList from './PlateList';
 export default {
   name: 'Main',
   components: { PlateList },
-  computed: {
-    oledDevice() {
-      return true;
-    },
+  data() {
+    return {
+      oledDevice: false,
+    };
   },
 };
 </script>
