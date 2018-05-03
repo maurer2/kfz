@@ -2,7 +2,7 @@
   <div class="wrapper" :class="{ 'wrapper--is-vibrant': oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
-      <Navigation :inactiveLetters="inactiveLetters"></Navigation>
+      <Navigation :inactiveLetters="inactiveLetters" @button-activated="selectLetter"></Navigation>
       <List></List>
     </main>
     <footer class="footer">Footer</footer>
@@ -20,7 +20,14 @@ export default {
     return {
       oledDevice: false,
       inactiveLetters: ['a', 'k', 'l'],
+      selectedLetters: [],
     };
+  },
+  methods: {
+    selectLetter(value) {
+      console.log('selected', value);
+      this.selectedLetters.push(value);
+    },
   },
 };
 </script>

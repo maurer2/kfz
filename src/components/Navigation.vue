@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <template v-for="letter in letters">
-      <button class="nav-entry" type="button" :key="letter" @click="drillDown()"
+      <button class="nav-entry" type="button" :key="letter" @click="activateButton(letter)"
         :class="{ 'nav-entry--is-inactive': checkInactivity(letter) }">
         {{ letter | uppercase }}
       </button>
@@ -35,8 +35,8 @@ export default {
     checkInactivity(letter) {
       return this.inactiveLetters.includes(letter);
     },
-    drillDown() {
-
+    activateButton(button) {
+      this.$emit('button-activated', button);
     },
   },
   filters: {
