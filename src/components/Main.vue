@@ -2,7 +2,8 @@
   <div class="wrapper" :class="{ 'wrapper--is-vibrant' : oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
-      <Navigation :inactiveLetters="inactiveLetters" @button-activated="selectLetter"></Navigation>
+      <Navigation :availableLetters="keyList.getUniqueLetters()"
+        @button-activated="selectLetter"></Navigation>
       <List :entries="keyList.entries"></List>
     </main>
     <footer class="footer">Footer</footer>

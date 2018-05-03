@@ -13,8 +13,10 @@ export default {
   name: 'List',
   components: { Plate },
   props: {
-    entries: Array,
-    default: [],
+    entries: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     numEntries() {

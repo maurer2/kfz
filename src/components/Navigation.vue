@@ -3,7 +3,7 @@
     <template v-for="letter in letters">
       <button class="nav-entry" type="button" :key="letter" @click="activateButton(letter)"
         :class="{ 'nav-entry--is-inactive': checkInactivity(letter) }">
-        {{ letter | uppercase }}
+        {{ letter }}
       </button>
     </template>
   </nav>
@@ -13,7 +13,7 @@
 export default {
   name: 'Navigation',
   props: {
-    inactiveLetters: {
+    availableLetters: {
       type: Array,
       default: () => [],
     },
@@ -21,8 +21,8 @@ export default {
   data() {
     return {
       letters: [
-        'a', 'ä', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'ö', 'p', 'q',
-        'r', 's', 'ß', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z',
+        'A', 'Ä', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'Ö', 'P', 'Q', 'R', 'S',
+        'ß', 'T', 'U', 'Ü', 'V', 'W', 'X', 'Y', 'Z',
       ],
     };
   },
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     checkInactivity(letter) {
-      return this.inactiveLetters.includes(letter);
+      return !this.availableLetters.includes(letter);
     },
     activateButton(button) {
       this.$emit('button-activated', button);
