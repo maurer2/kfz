@@ -36,16 +36,19 @@ export default {
     font-weight: bold;
     text-decoration: none;
   }
+
   .plate-wrapper {
     margin: 0;
   }
+
   .plate-key {
-    color: #fff;
+    color: #000;
   }
+
   .plate-value {
     display: none;
     margin: 0;
-    color: #fff;
+    color: #000;
 
     .plate--is-expanded & {
       display: block;

@@ -54,6 +54,7 @@ export default {
     justify-content: space-evenly;
     background: black;
   }
+
   .nav-entry {
     padding: 10px 0;
     background: #fff;

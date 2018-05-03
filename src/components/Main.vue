@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper" :class="{ 'wrapper--is-vibrant' : oledDevice }">
-    <header class="header">KFZ</header>
+    <header class="header">
+      <h1>KFZ</h1>
+      <button type="button" @click="resetList()">Reset</button>
+    </header>
     <main class="main">
       <Navigation :availableLetters="keyList.getUniqueLetters()"
         @button-activated="selectLetter"></Navigation>
@@ -23,15 +26,17 @@ export default {
   data() {
     return {
       oledDevice: false,
-      inactiveLetters: ['a', 'k', 'l'],
       selectedLetters: [],
       keyList: new ListJS(),
     };
   },
   methods: {
     selectLetter(value) {
-      console.log('selected', value);
       this.selectedLetters.push(value);
+      this.keyList.filterList(value);
+    },
+    resetList() {
+      this.keyList.resetList();
     },
   },
 };
@@ -50,8 +55,21 @@ export default {
   }
 
   .header {
+    display: flex;
+    padding: 5px 10px;
     flex-grow: 0;
-    background: #d1e4fa
+    background: #d1e4fa;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 5px 15px;
+    }
   }
 
   .main {

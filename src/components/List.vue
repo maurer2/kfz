@@ -35,6 +35,7 @@ export default {
     margin: 0;
     flex-direction: column;
   }
+
   .plate {
     display: block;
     margin: 0;
