@@ -1,15 +1,18 @@
 <template>
-  <div class="wrapper" :class="{ 'wrapper--is-vibrant': oledDevice }">
+  <div class="wrapper" :class="{ 'wrapper--is-vibrant' : oledDevice }">
     <header class="header">KFZ</header>
     <main class="main">
       <Navigation :inactiveLetters="inactiveLetters" @button-activated="selectLetter"></Navigation>
-      <List></List>
+      <List :entries="keyList.entries"></List>
     </main>
     <footer class="footer">Footer</footer>
   </div>
 </template>
 
 <script>
+// JS
+import ListJS from './List';
+// Vue
 import Navigation from './Navigation';
 import List from './List.vue';
 
@@ -21,6 +24,7 @@ export default {
       oledDevice: false,
       inactiveLetters: ['a', 'k', 'l'],
       selectedLetters: [],
+      keyList: new ListJS(),
     };
   },
   methods: {

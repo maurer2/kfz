@@ -8,19 +8,18 @@
 
 <script>
 import Plate from './Plate.vue';
-import List from './List';
 
 export default {
   name: 'List',
   components: { Plate },
+  props: {
+    entries: Array,
+    default: [],
+  },
   computed: {
     numEntries() {
       return this.entries.length;
     },
-  },
-  created() {
-    const list = new List();
-    this.entries = list.entries;
   },
   mounted() {
     console.log('size list:', this.entries.length);
