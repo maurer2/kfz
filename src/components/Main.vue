@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper" :class="{ 'wrapper--is-vibrant' : oledDevice }">
     <header class="header">
-      <h1>KFZ</h1>
-      <button type="button" @click="resetList()">Reset</button>
+      <h1 class="title">KFZ</h1>
+      <span class="search" v-if="hasSearched">Suche: {{ searchTerms }}</span>
+      <button class="button" type="button" @click="resetList()">Reset</button>
     </header>
     <main class="main">
       <Navigation :availableLetters="keyList.getUniqueLetters()"
@@ -26,17 +27,28 @@ export default {
   data() {
     return {
       oledDevice: false,
+      hasSearched: false,
       selectedLetters: [],
       keyList: new ListJS(),
     };
   },
+  computed: {
+    searchTerms() {
+      const text = (this.hasSearched) ? this.selectedLetters.join('-') : '';
+
+      return text;
+    },
+  },
   methods: {
     selectLetter(value) {
+      this.hasSearched = true;
       this.selectedLetters.push(value);
       this.keyList.filterList(value);
     },
     resetList() {
+      this.hasSearched = false;
       this.keyList.resetList();
+      this.selectedLetters = [];
     },
   },
 };
@@ -62,12 +74,16 @@ export default {
     justify-content: space-between;
     align-items: center;
 
-    h1 {
-      font-size: 1rem;
+    .title {
+      font-size: 1.25rem;
       font-weight: bold;
     }
 
-    button {
+    .search {
+      font-size: 1rem;
+    }
+
+    .button {
       padding: 5px 15px;
     }
   }
