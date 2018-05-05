@@ -1,6 +1,6 @@
 <template>
-  <ul class="plates">
-    <li class="plate" v-for="(entry, index) in entries" :key="entry.key">
+  <ul class="plateslist">
+    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key">
       <plate :plate="entry" :index="index"></plate>
     </li>
   </ul>
@@ -23,21 +23,23 @@ export default {
       return this.entries.length;
     },
   },
-  mounted() {
-    console.log('size list:', this.entries.length);
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-  .plates {
+  $spacing: 0.5rem;
+  $number-of-items: 4;
+
+  .plateslist {
     display: flex;
-    margin: 0;
-    flex-direction: column;
+    margin: $spacing ($spacing * -1);
+    flex-wrap: wrap;
   }
 
-  .plate {
-    display: block;
-    margin: 0;
+  .plateslist-entry {
+    margin: $spacing;
+    background: white;
+    //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
+    flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * 2});
   }
 </style>

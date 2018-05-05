@@ -1,12 +1,15 @@
 <template>
-  <a href="#" class="plate" :class="{ 'plate--is-expanded': isExpanded }"
+  <a class="plate plate--card" :class="{ 'plate--is-expanded': isExpanded }"
     @click.prevent="toggleContent">
     <dl class="plate-wrapper">
       <dt class="plate-key">
         {{ plate.key }}
       </dt>
       <dd class="plate-value">
-        {{ plate.district }}, {{ plate.state }}
+        {{ plate.district }}
+      </dd>
+      <dd class="plate-value">
+        {{ plate.state }}
       </dd>
     </dl>
   </a>
@@ -31,10 +34,13 @@ export default {
 
 <style lang="scss" scoped>
   .plate {
-    padding: 15px 0;
-    border-bottom: 1px solid #fff;
-    font-weight: bold;
+    display: block;
+    padding: 1rem;
     text-decoration: none;
+
+    &--card {
+      min-height: 100%;
+    }
   }
 
   .plate-wrapper {
@@ -43,6 +49,7 @@ export default {
 
   .plate-key {
     color: #000;
+    font-weight: bold;
   }
 
   .plate-value {

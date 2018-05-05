@@ -18,6 +18,12 @@ body {
   background: #fff;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 h1,
 h2 {
   font-weight: normal;

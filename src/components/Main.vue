@@ -68,7 +68,7 @@ export default {
 
   .header {
     display: flex;
-    padding: 5px 10px;
+    padding: 0.5rem 2rem;
     flex-grow: 0;
     background: #d1e4fa;
     justify-content: space-between;
@@ -90,6 +90,7 @@ export default {
 
   .main {
     flex-grow: 1;
+    background: black;
   }
 
   .footer {
