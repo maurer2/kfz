@@ -1,6 +1,7 @@
 <template>
   <ul class="plateslist">
-    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key">
+    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key" :class="calculateRow(index)"
+      @click="toggleRow(index)">
       <plate :plate="entry" :index="index"></plate>
     </li>
   </ul>
@@ -21,6 +22,16 @@ export default {
   computed: {
     numEntries() {
       return this.entries.length;
+    },
+  },
+  methods: {
+    calculateRow(index) {
+      const numberOfItemsPerRow = 4;
+
+      return (index < numberOfItemsPerRow) ? 'first' : 'second'; // temp
+    },
+    toggleRow(index) {
+      console.log('toggle', index);
     },
   },
 };

@@ -1,6 +1,5 @@
 <template>
-  <a class="plate plate--card" :class="{ 'plate--is-expanded': isExpanded }"
-    @click.prevent="toggleContent">
+  <a href="#" class="plate plate--card" :class="{ 'plate--is-expanded': isExpanded }">
     <dl class="plate-wrapper">
       <dt class="plate-key">
         {{ plate.key }}
@@ -18,15 +17,14 @@
 <script>
 export default {
   name: 'Plate',
-  props: ['plate', 'index'],
-  data() {
-    return {
-      isExpanded: (this.index === 0),
-    };
-  },
-  methods: {
-    toggleContent() {
-      this.isExpanded = !this.isExpanded;
+  props: {
+    plate: {
+      type: Object,
+      default: () => {},
+    },
+    isExpanded: {
+      type: Boolean,
+      default: () => {},
     },
   },
 };
