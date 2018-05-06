@@ -1,6 +1,7 @@
 <template>
   <ul class="plateslist">
-    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key" :class="calculateRow(index)"
+    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
+      :class="calculateRow(index)"
       @click="toggleRow(index)">
       <plate :plate="entry" :index="index"></plate>
     </li>
