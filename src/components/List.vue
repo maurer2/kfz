@@ -1,8 +1,7 @@
 <template>
   <ul class="plateslist">
     <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
-      :class="calculateRow(index)"
-      @click="toggleRow(index)">
+      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click="toggleRow(index)">
       <plate :plate="entry" :index="index"></plate>
     </li>
   </ul>
@@ -20,16 +19,23 @@ export default {
       default: () => [],
     },
   },
+  data() {
+    return {
+      numberOfItemsPerRow: 4,
+      expandedRow: 0,
+    };
+  },
   computed: {
     numEntries() {
       return this.entries.length;
     },
   },
   methods: {
-    calculateRow(index) {
-      const numberOfItemsPerRow = 4;
+    isActiveRow(index) {
+      const lowerBound = this.expandedRow * this.numberOfItemsPerRow;
+      const upperBound = lowerBound + this.numberOfItemsPerRow;
 
-      return (index < numberOfItemsPerRow) ? 'first' : 'second'; // temp
+      return index >= lowerBound && index < upperBound;
     },
     toggleRow(index) {
       console.log('toggle', index);
@@ -53,5 +59,10 @@ export default {
     background: white;
     //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
     flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * 2});
+    overflow: hidden;
+  }
+
+  .plateslist-entry---is-active {
+    background: #d1e4fa;
   }
 </style>

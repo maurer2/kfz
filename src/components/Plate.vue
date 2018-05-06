@@ -24,7 +24,7 @@ export default {
     },
     isExpanded: {
       type: Boolean,
-      default: () => {},
+      default: true,
     },
   },
 };
