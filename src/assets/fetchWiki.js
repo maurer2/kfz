@@ -12,9 +12,38 @@ wikiParser.fetch(url, 'de').then((page) => {
     .map(section => section.data)
     .filter((_, index) => index >= indexA && index <= indexZ);
 
-  const plateKey = entriesAtoZ[1].lists[0][0].data.fmt.bold;
-  const plateValue = entriesAtoZ[1].lists[0][0].data.text;
+  // combine
+  const plates = entriesAtoZ
+    .map((entry) => {
+      let plate;
 
-  console.log(plateKey[0]);
-  console.log(plateValue);
+      // some entries are inside tables, some are inside lists
+      if (entry.tables) {
+        const plateKey = entry.tables[0][0]['col-0'].data.text;
+        const plateValue = entry.tables[0][0]['col-0'].data.text;
+
+        plate = {
+          [plateKey]: plateValue,
+        };
+      }
+
+      if (entry.lists) {
+        const plateKey = entry.lists[0][0].data.fmt.bold;
+        const plateValue = entry.lists[0][0].data.text;
+
+        plate = {
+          [plateKey]: plateValue,
+        };
+      }
+
+      return plate;
+    });
+    /*
+    .filter((entry) => {
+      const plateKey = Object.keys(entry);
+      return true;
+    });
+    */
+
+  console.log(plates);
 });
