@@ -15,35 +15,42 @@ wikiParser.fetch(url, 'de').then((page) => {
   // combine
   const plates = entriesAtoZ
     .map((entry) => {
-      let plate;
-
-      // some entries are inside tables, some are inside lists
+      // wtf_wikipedia doens't return correctly parsed table content
       if (entry.tables) {
-        const plateKey = entry.tables[0][0]['col-0'].data.text;
-        const plateValue = entry.tables[0][0]['col-0'].data.text;
+        return null;
+      }
 
-        plate = {
-          [plateKey]: plateValue,
+      // single entry
+      if (entry.sentences && entry.sentences.length === 1) {
+        const plateKey = entry.sentences[0].fmt.bold[0];
+        const plateValue = entry.sentences[0].text;
+
+        return {
+          [entry.title]: {
+            [plateKey]: plateValue,
+          },
         };
       }
 
-      if (entry.lists) {
-        const plateKey = entry.lists[0][0].data.fmt.bold;
-        const plateValue = entry.lists[0][0].data.text;
+      // multiple entries
+      if (entry.lists && entry.lists.length > 0) {
+        const subentries = entry.lists[0].map((subentry) => {
+          const plateKey = subentry.data.fmt.bold;
+          const plateValue = subentry.data.text;
 
-        plate = {
-          [plateKey]: plateValue,
+          return {
+            [plateKey]: plateValue,
+          };
+        });
+
+        return {
+          [entry.title]: subentries,
         };
       }
 
-      return plate;
-    });
-    /*
-    .filter((entry) => {
-      const plateKey = Object.keys(entry);
-      return true;
-    });
-    */
+      return null;
+    })
+    .filter(entry => entry !== null);
 
-  console.log(plates);
+  console.dir(plates);
 });
