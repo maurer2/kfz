@@ -5,7 +5,7 @@ const url = 'Liste_der_deutschen_Kfz-Kennzeichen,_die_nicht_mehr_ausgegeben_werd
 wikiParser.fetch(url, 'de').then((page) => {
   const sections = page.sections();
 
-  // filter section for alphabet
+  // filter section for alphabet only content
   const indexA = sections.findIndex(section => section.data.title === 'A');
   const indexZ = sections.findIndex(section => section.data.title === 'Z');
   const entriesAtoZ = sections
@@ -13,9 +13,9 @@ wikiParser.fetch(url, 'de').then((page) => {
     .filter((_, index) => index >= indexA && index <= indexZ);
 
   // combine
-  const plates = entriesAtoZ
+  const platesArray = entriesAtoZ
     .map((entry) => {
-      // wtf_wikipedia doens't return correctly parsed table content
+      // wtf_wikipedia doens't correctly parse table content
       if (entry.tables) {
         return null;
       }
@@ -52,5 +52,15 @@ wikiParser.fetch(url, 'de').then((page) => {
     })
     .filter(entry => entry !== null);
 
-  console.dir(plates);
+  // extract nested entries
+  const flattenedPlatesObject = platesArray.reduce((accumulator, current) => {
+    const currentLetter = Object.keys(current)[0];
+    const currentTotal = accumulator;
+
+    currentTotal[currentLetter] = current[currentLetter];
+
+    return currentTotal;
+  }, {});
+
+  console.dir(flattenedPlatesObject);
 });
