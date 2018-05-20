@@ -1,8 +1,8 @@
 <template>
   <ul class="plateslist">
     <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
-      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click="toggleRow(index)">
-      <plate :plate="entry" :index="index"></plate>
+      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click="activateRow(index)">
+      <plate :plate="entry" :isExpanded="isActiveRow(index)"></plate>
     </li>
   </ul>
 </template>
@@ -37,8 +37,11 @@ export default {
 
       return index >= lowerBound && index < upperBound;
     },
-    toggleRow(index) {
-      console.log('toggle', index);
+    activateRow(index) {
+      this.expandedRow = Math.floor(index / this.numberOfItemsPerRow);
+    },
+    resetRow() {
+      this.expandedRow = 0;
     },
   },
 };
