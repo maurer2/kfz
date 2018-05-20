@@ -1,4 +1,5 @@
 const wikiParser = require('wtf_wikipedia');
+const fs = require('mz/fs');
 
 const url = 'Liste_der_deutschen_Kfz-Kennzeichen,_die_nicht_mehr_ausgegeben_werden';
 
@@ -51,5 +52,12 @@ wikiParser.fetch(url, 'de').then((page) => {
   // remove null values
   platesArray.filter(entry => entry !== null);
 
-  console.dir(platesArray);
+  // create single object
+  const platesObject = Object.assign({}, ...platesArray);
+
+  // write to file
+  fs.writeFile('de-outdated.json', JSON.stringify(platesObject, null, 2))
+    .then(console.log('wrote file'));
+
+  console.dir(platesObject);
 });
