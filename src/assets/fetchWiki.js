@@ -25,7 +25,7 @@ wikiParser.fetch(url, 'de').then((page) => {
     // single entry
     if (entry.sentences && entry.sentences.length === 1) {
       const plateKey = entry.sentences[0].fmt.bold[0];
-      const plateValue = entry.sentences[0].text;
+      const plateValue = (entry.sentences[0].text).replace(`: ${plateKey} `, '');
 
       const newEntry = [{ [plateKey]: plateValue }];
 
@@ -36,7 +36,7 @@ wikiParser.fetch(url, 'de').then((page) => {
     if (entry.lists && entry.lists.length > 0) {
       const subentries = entry.lists[0].map((subentry) => {
         const plateKey = subentry.data.fmt.bold;
-        const plateValue = subentry.data.text;
+        const plateValue = subentry.data.text.replace(`${plateKey} `, '');
 
         return {
           [plateKey]: plateValue,
