@@ -13,54 +13,43 @@ wikiParser.fetch(url, 'de').then((page) => {
     .filter((_, index) => index >= indexA && index <= indexZ);
 
   // combine
-  const platesArray = entriesAtoZ
-    .map((entry) => {
-      // wtf_wikipedia doens't correctly parse table content
-      if (entry.tables) {
-        return null;
-      }
+  const platesArray = entriesAtoZ.reduce((accumulator, entry) => {
+    let newAccumulator = accumulator;
 
-      // single entry
-      if (entry.sentences && entry.sentences.length === 1) {
-        const plateKey = entry.sentences[0].fmt.bold[0];
-        const plateValue = entry.sentences[0].text;
+    // wtf_wikipedia doens't correctly parse table content
+    if (entry.tables) {
+      return newAccumulator;
+    }
 
-        return {
-          [entry.title]: {
-            [plateKey]: plateValue,
-          },
-        };
-      }
+    // single entry
+    if (entry.sentences && entry.sentences.length === 1) {
+      const plateKey = entry.sentences[0].fmt.bold[0];
+      const plateValue = entry.sentences[0].text;
 
-      // multiple entries
-      if (entry.lists && entry.lists.length > 0) {
-        const subentries = entry.lists[0].map((subentry) => {
-          const plateKey = subentry.data.fmt.bold;
-          const plateValue = subentry.data.text;
+      const newEntry = [{ [plateKey]: plateValue }];
 
-          return {
-            [plateKey]: plateValue,
-          };
-        });
+      newAccumulator = newAccumulator.concat(newEntry);
+    }
+
+    // multiple entries
+    if (entry.lists && entry.lists.length > 0) {
+      const subentries = entry.lists[0].map((subentry) => {
+        const plateKey = subentry.data.fmt.bold;
+        const plateValue = subentry.data.text;
 
         return {
-          [entry.title]: subentries,
+          [plateKey]: plateValue,
         };
-      }
+      });
 
-      return null;
-    })
-    .filter(entry => entry !== null);
+      newAccumulator = newAccumulator.concat(subentries);
+    }
 
-  // extract nested entries
-  const flattenedPlatesObject = platesArray.reduce((accumulator, current) => {
-    const currentLetter = Object.keys(current)[0];
-    const currentTotal = accumulator;
+    return newAccumulator;
+  }, []);
 
-    currentTotal[currentLetter] = current[currentLetter];
+  // remove null values
+  platesArray.filter(entry => entry !== null);
 
-    return currentTotal;
-  }, {});
-
-  console.dir(flattenedPlatesObject);
+  console.dir(platesArray);
 });
