@@ -1,7 +1,7 @@
 <template>
   <ul class="plateslist">
     <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
-      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click="activateRow(index)">
+      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click.prevent="activateRow(index)">
       <plate :plate="entry" :isExpanded="isActiveRow(index)"></plate>
     </li>
   </ul>
