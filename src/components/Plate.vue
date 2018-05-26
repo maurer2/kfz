@@ -1,10 +1,7 @@
 <template>
   <a href="#0" class="plate plate--card" :class="{ 'plate--is-expanded': isExpanded }">
     <header class="card-header">
-      <img src="/static/plate-de-empty.svg" class="card-image" alt="" />
-      <span class="card-title">
-        {{ plate.key }}
-      </span>
+      <PlateImage :plate="plate.key" class="card-title"></PlateImage>
     </header>
     <div class="card-body">
       <p class="plate-value">
@@ -18,8 +15,11 @@
 </template>
 
 <script>
+import PlateImage from './PlateImage';
+
 export default {
   name: 'Plate',
+  components: { PlateImage },
   props: {
     plate: {
       type: Object,
@@ -50,22 +50,7 @@ export default {
   }
 
   .card-header {
-    position: relative;
     margin-bottom: 1rem;
-    text-align: left;
-  }
-
-  .card-image {
-    display: block;
-    width: 100%;
-  }
-
-  .card-title {
-    position: absolute;
-    color: black;
-    top: 7px; bottom: 7px;
-    left: 15%; right: 10%;
-    font-weight: bold;
   }
 
   .card-body {

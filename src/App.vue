@@ -51,4 +51,9 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
+@font-face {
+  font-family: plateFont;
+  src: url('./assets/font.woff');
+}
 </style>
