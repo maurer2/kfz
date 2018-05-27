@@ -1,8 +1,8 @@
 <template>
   <ul class="plateslist">
     <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
-      :class="{ 'plateslist-entry---is-active': isActiveRow(index) }" @click.prevent="activateRow(index)">
-      <plate :plate="entry" :isExpanded="isActiveRow(index)"></plate>
+      @click.prevent="toggleActiveEntry(index)">
+      <plate :plate="entry" :isExpanded="isActiveEntry(index)"></plate>
     </li>
   </ul>
 </template>
@@ -23,6 +23,7 @@ export default {
     return {
       numberOfItemsPerRow: 4,
       expandedRow: 0,
+      activeEntry: 0,
     };
   },
   computed: {
@@ -37,11 +38,25 @@ export default {
 
       return index >= lowerBound && index < upperBound;
     },
+    isActiveEntry(index) {
+      return index === this.activeEntry;
+    },
     activateRow(index) {
       this.expandedRow = Math.floor(index / this.numberOfItemsPerRow);
     },
+    toggleActiveEntry(index) {
+      if (this.activeEntry === index) {
+        this.activeEntry = -1;
+
+        return;
+      }
+      this.activeEntry = index;
+    },
     resetRow() {
       this.expandedRow = 0;
+    },
+    resetList() {
+      this.activeEntry = -1;
     },
   },
 };
@@ -55,17 +70,12 @@ export default {
     display: flex;
     margin: $spacing ($spacing * -1);
     flex-wrap: wrap;
+    align-items: flex-start;
   }
 
   .plateslist-entry {
     margin: $spacing;
-    background: white;
     //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
     flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * 2});
-    overflow: hidden;
-  }
-
-  .plateslist-entry---is-active {
-    background: #d1e4fa;
   }
 </style>

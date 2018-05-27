@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 html,
 body {
   margin: 0;
@@ -60,5 +60,18 @@ a {
 @font-face {
   font-family: plateFontNew;
   src: url('./assets/fontNew.woff');
+}
+
+.media {
+  display: flex;
+  align-items: flex-start;
+
+  .media-image {
+    flex-grow: 0;
+  }
+
+  .media-content {
+    flex-grow: 1;
+  }
 }
 </style>

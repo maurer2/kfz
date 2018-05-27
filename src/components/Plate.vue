@@ -1,11 +1,11 @@
 <template>
-  <a href="#0" class="plate plate--card" :class="{ 'plate--is-expanded': isExpanded }">
+  <a href="#0" class="card" :class="{ 'card--is-expanded': isExpanded }">
     <header class="card-header">
-      <PlateImage :plate="plate.key" class="card-title"></PlateImage>
+      <PlateImage :plate="plate.key"></PlateImage>
     </header>
     <div class="card-body">
-      <div class="plate-value">
-        <svg x="0px" y="0px" viewBox="0 0 962 800" xml:space="preserve" class="plate-value-icon">
+      <div class="media">
+        <svg class="media-image icon" x="0px" y="0px" viewBox="0 0 962 800" xml:space="preserve">
 	        <path d="M959.1,404.35l-37.6-35.8c-3.9-3.9-10.3-3.9-14.2,0l-37.6,35.8c-1.9,1.899-2.9,4.399-2.9,7.1v178.5c0,5.5-4.5,10-10,10
 			h-55.2c-5.5,0-10,4.5-10,10v55.701c0,5.5-4.5,10-10,10h-5.1c-5.5,0-10-4.5-10-10v-432.4c0-5.5-4.5-10-10-10h-13.3
 			c-5.5,0-10-4.5-10-10v-27c0-5.5-4.5-10-10-10H669c-5.5,0-10,4.5-10,10v27c0,5.5-4.5,10-10,10h-12.8c-5.5,0-10,4.5-10,10
@@ -17,12 +17,12 @@
 			c-6.1,0-11,4.899-11,11V651.15c0,9.5-9.3,13.699-15.2,6.299L79.7,603.65c-4.7-5.9-12.5-5.9-17.2,0l-60.3,76
 			c-1.4,1.799-2.2,4-2.2,6.199v89.9c0,5.5,4.5,10,10,10h471h471c5.5,0,10-4.5,10-10v-364.4C962,408.75,961,406.25,959.1,404.35z"/>
         </svg>
-        <span class="plate-value-text">
+        <span class="media-content text">
           {{ plate.district }}
         </span>
       </div>
-      <div class="plate-value">
-        <svg x="0px" y="0px" viewBox="0 0 962 800" xml:space="preserve" class="plate-value-icon">
+      <div class="media">
+        <svg class="media-image icon" x="0px" y="0px" viewBox="0 0 962 800" xml:space="preserve">
 	        <path d="M959.1,404.35l-37.6-35.8c-3.9-3.9-10.3-3.9-14.2,0l-37.6,35.8c-1.9,1.899-2.9,4.399-2.9,7.1v178.5c0,5.5-4.5,10-10,10
 			h-55.2c-5.5,0-10,4.5-10,10v55.701c0,5.5-4.5,10-10,10h-5.1c-5.5,0-10-4.5-10-10v-432.4c0-5.5-4.5-10-10-10h-13.3
 			c-5.5,0-10-4.5-10-10v-27c0-5.5-4.5-10-10-10H669c-5.5,0-10,4.5-10,10v27c0,5.5-4.5,10-10,10h-12.8c-5.5,0-10,4.5-10,10
@@ -34,7 +34,7 @@
 			c-6.1,0-11,4.899-11,11V651.15c0,9.5-9.3,13.699-15.2,6.299L79.7,603.65c-4.7-5.9-12.5-5.9-17.2,0l-60.3,76
 			c-1.4,1.799-2.2,4-2.2,6.199v89.9c0,5.5,4.5,10,10,10h471h471c5.5,0,10-4.5,10-10v-364.4C962,408.75,961,406.25,959.1,404.35z"/>
         </svg>
-        <span class="plate-value-text">
+        <span class="media-content text">
           {{ plate.state }}
         </span>
       </div>
@@ -67,13 +67,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .plate {
+  .card {
     display: block;
     padding: 1rem;
+    background: #fff;
+    color: #000;
     text-decoration: none;
 
-    &--card {
-      min-height: 100%;
+    &--is-expanded {
+      background: #d1e4fa;
     }
   }
 
@@ -83,20 +85,13 @@ export default {
     display: none;
     text-align: left;
 
-    .plate--is-expanded & {
+    .card--is-expanded & {
       display: block;
       margin-top: 1rem;
     }
   }
 
-  .plate-value {
-    display: flex;
-    width: 100%;
-    align-items: flex-start;
-    color: #000;
-  }
-
-  .plate-value-icon {
+  .icon {
     width: 1rem;
     height: 1rem;
     padding-right: 0.5rem;
@@ -105,7 +100,5 @@ export default {
     flex-grow: 0;
   }
 
-  .plate-value-text {
-    flex-grow: 1;
-  }
+  .text {}
 </style>
