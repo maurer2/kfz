@@ -53,7 +53,12 @@ a {
 }
 
 @font-face {
-  font-family: plateFont;
-  src: url('./assets/font.woff');
+  font-family: plateFontOld;
+  src: url('./assets/fontOld.woff');
+}
+
+@font-face {
+  font-family: plateFontNew;
+  src: url('./assets/fontNew.woff');
 }
 </style>

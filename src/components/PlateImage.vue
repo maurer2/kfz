@@ -24,7 +24,7 @@
       </g>
       <path fill="#000080" d="m-486.29 554.99v16.416h6.4805c0.95694-0.021 1.7424-0.33812 2.3574-0.95312 0.61495-0.61498 0.93403-1.4024 0.95508-2.3594v-9.791c-0.0211-0.95697-0.34013-1.7424-0.95508-2.3574-0.61504-0.61497-1.4005-0.93405-2.3574-0.95508z"/>
     </g>
-    <text x="15%" y="82%" fill="000" font-size="100">{{ plate }}</text>
+    <text x="50%" y="50%" alignment-baseline="middle" text-anchor="middle" fill="000" font-size="100">{{ plate }}</text>
   </svg>
 </template>
 
@@ -45,6 +45,6 @@ export default {
   display: block;
   width: 100%;
   height: auto;
-  font-family: plateFont;
+  font-family: plateFontNew;
 }
 </style>
