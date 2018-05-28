@@ -3,7 +3,7 @@
     <header class="card-header">
       <PlateImage :plate="plate.key"></PlateImage>
     </header>
-    <div class="card-body">
+    <div class="card-body" :style="{ height: bodyHeight }" ref="body">
       <div class="media">
         <svg class="media-image icon" x="0px" y="0px" viewBox="0 0 962 800" xml:space="preserve">
 	        <path d="M959.1,404.35l-37.6-35.8c-3.9-3.9-10.3-3.9-14.2,0l-37.6,35.8c-1.9,1.899-2.9,4.399-2.9,7.1v178.5c0,5.5-4.5,10-10,10
@@ -58,9 +58,23 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      height: 0,
+    };
+  },
   watch: {
-    isExpanded(newValue, oldval) {
-      console.log(newValue, oldval);
+    isExpanded() {
+      if (this.isExpanded) {
+        this.height = this.$refs.body.scrollHeight;
+      } else {
+        this.height = 0;
+      }
+    },
+  },
+  computed: {
+    bodyHeight() {
+      return `${this.height}px`;
     },
   },
 };
@@ -73,6 +87,7 @@ export default {
     background: #fff;
     color: #000;
     text-decoration: none;
+    user-select: none;
 
     &--is-expanded {
       background: #d1e4fa;
@@ -82,13 +97,19 @@ export default {
   .card-header {}
 
   .card-body {
-    display: none;
+    height: 0;
+    visibility: hidden;
     text-align: left;
+    transition: height 0.25s;
 
     .card--is-expanded & {
-      display: block;
-      margin-top: 1rem;
+      height: auto;
+      visibility: visible;
     }
+  }
+
+  .media {
+    margin-top: 0.5rem;
   }
 
   .icon {

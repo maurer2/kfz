@@ -23,7 +23,7 @@ export default {
     return {
       numberOfItemsPerRow: 4,
       expandedRow: 0,
-      activeEntry: 0,
+      activeEntry: -1,
     };
   },
   computed: {
@@ -77,5 +77,6 @@ export default {
     margin: $spacing;
     //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
     flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * 2});
+    overflow: hidden;
   }
 </style>
