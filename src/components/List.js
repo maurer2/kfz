@@ -1,15 +1,46 @@
 import licenceJSON from '../assets/de.json';
+import licenceOldJSON from '../assets/de-outdated.json';
 import Plate from './Plate';
 
 class List {
   constructor() {
-    this.entriesAll = Object.keys(licenceJSON).map((key) => {
-      const entry = new Plate(key, licenceJSON[key]);
-
+    const entriesCurrent = Object.keys(licenceJSON).map((key) => {
+      const entry = new Plate(key, licenceJSON[key], true);
       return entry;
     });
 
-    this.entries = this.entriesAll.slice();
+    const entriesOutdated = Object.keys(licenceOldJSON).map((key) => {
+      const entry = new Plate(key, licenceOldJSON[key], false);
+      return entry;
+    });
+
+    // contains duplicates
+    const entriesAll = entriesCurrent.concat(entriesOutdated);
+
+    // sorting
+    const entriesSorted = entriesAll.slice().sort(((current, next) => {
+      const currentKey = current.key;
+      const nextKey = next.key;
+
+      return currentKey.localeCompare(nextKey);
+    }));
+
+    // remove duplicates
+    /*
+    this.entries = entriesSorted.filter((value, index) => {
+      const entryKey = value.key;
+
+      const firstIndex = entriesAll.findIndex((entry) => {
+        const test = entry.key === entryKey;
+
+        return test;
+      });
+
+      return index === firstIndex;
+    });
+    */
+    this.entries = entriesSorted;
+
     this.position = 0;
   }
 
