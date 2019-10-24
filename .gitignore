@@ -36,7 +36,7 @@ build/Release
 node_modules/
 jspm_packages/
 
-# Typescript v1 declaration files
+# TypeScript v1 declaration files
 typings/
 
 # Optional npm cache directory
@@ -60,4 +60,23 @@ typings/
 # next.js build output
 .next
 
+# vscode
+.vscode
+
+# python
+.venv/
+
+# build files
+dist/
+
+# svelte
+public/
+
+# vscode
+.vscode
+
+# osx
 .DS_Store
+
+# pycharm
+.idea
