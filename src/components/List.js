@@ -1,15 +1,15 @@
-import licenceJSON from '../assets/de.json';
-import licenceOldJSON from '../assets/de-outdated.json';
-import Plate from './Plate';
+import licenceJSON from "../assets/de.json";
+import licenceOldJSON from "../assets/de-outdated.json";
+import Plate from "./Plate";
 
 class List {
   constructor() {
-    const entriesCurrent = Object.keys(licenceJSON).map((key) => {
+    const entriesCurrent = Object.keys(licenceJSON).map(key => {
       const entry = new Plate(key, licenceJSON[key], true);
       return entry;
     });
 
-    const entriesOutdated = Object.keys(licenceOldJSON).map((key) => {
+    const entriesOutdated = Object.keys(licenceOldJSON).map(key => {
       const entry = new Plate(key, licenceOldJSON[key], false);
       return entry;
     });
@@ -18,12 +18,12 @@ class List {
     const entriesAll = entriesCurrent.concat(entriesOutdated);
 
     // sorting
-    const entriesSorted = entriesAll.slice().sort(((current, next) => {
+    const entriesSorted = entriesAll.slice().sort((current, next) => {
       const currentKey = current.key;
       const nextKey = next.key;
 
       return currentKey.localeCompare(nextKey);
-    }));
+    });
 
     // remove duplicates
     /*
@@ -59,20 +59,19 @@ class List {
   }
 
   getUniqueLetters() {
-    const lettersSingle = this.entries
-      .map(entry => entry.getLetterAtPosition(this.position));
+    const lettersSingle = this.entries.map(entry => entry.getLetterAtPosition(this.position));
     const lettersSingleSorted = lettersSingle.slice().sort(); // alphabetically
 
     // true for first occurence in array // indexof returns first index of element found
-    const lettersUnique = lettersSingleSorted
-      .filter((value, index, array) => array.indexOf(value) === index);
+    const lettersUnique = lettersSingleSorted.filter(
+      (value, index, array) => array.indexOf(value) === index
+    );
 
     return lettersUnique;
   }
 
   filterList(letter) {
-    this.entries = this.entries
-      .filter(entry => entry.hasLetterAtPosition(this.position, letter));
+    this.entries = this.entries.filter(entry => entry.hasLetterAtPosition(this.position, letter));
     this.position = this.position + 1;
 
     return this.entries;
