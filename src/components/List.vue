@@ -1,35 +1,39 @@
 <template>
   <ul class="plateslist">
-    <li class="plateslist-entry" v-for="(entry, index) in entries" :key="entry.key"
-      @click.prevent="toggleActiveEntry(index)">
+    <li
+      class="plateslist-entry"
+      v-for="(entry, index) in entries"
+      :key="entry.key"
+      @click.prevent="toggleActiveEntry(index)"
+    >
       <plate :plate="entry" :isExpanded="isActiveEntry(index)"></plate>
     </li>
   </ul>
 </template>
 
 <script>
-import Plate from './Plate.vue';
+import Plate from "./Plate.vue";
 
 export default {
-  name: 'List',
+  name: "List",
   components: { Plate },
   props: {
     entries: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   data() {
     return {
       numberOfItemsPerRow: 4,
       expandedRow: 0,
-      activeEntry: -1,
+      activeEntry: -1
     };
   },
   computed: {
     numEntries() {
       return this.entries.length;
-    },
+    }
   },
   methods: {
     isActiveRow(index) {
@@ -57,26 +61,26 @@ export default {
     },
     resetList() {
       this.activeEntry = -1;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-  $spacing: 0.5rem;
-  $number-of-items: 4;
+$spacing: 0.5rem;
+$number-of-items: 4;
 
-  .plateslist {
-    display: flex;
-    margin: $spacing ($spacing * -1);
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
+.plateslist {
+  display: flex;
+  margin: $spacing ($spacing * -1);
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
 
-  .plateslist-entry {
-    margin: $spacing;
-    //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
-    flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * 2});
-    overflow: hidden;
-  }
+.plateslist-entry {
+  margin: $spacing;
+  //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
+  flex-basis: calc(#{percentage(1 / $number-of-items)} - #{$spacing * 2});
+  overflow: hidden;
+}
 </style>

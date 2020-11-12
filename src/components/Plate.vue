@@ -60,24 +60,24 @@
 </template>
 
 <script>
-import PlateImage from './PlateImage';
+import PlateImage from "./PlateImage";
 
 export default {
-  name: 'Plate',
+  name: "Plate",
   components: { PlateImage },
   props: {
     plate: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     isExpanded: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      height: 0,
+      height: 0
     };
   },
   watch: {
@@ -87,13 +87,13 @@ export default {
       } else {
         this.height = 0;
       }
-    },
+    }
   },
   computed: {
     bodyHeight() {
       return `${this.height}px`;
-    },
-  },
+    }
+  }
 };
 </script>
 

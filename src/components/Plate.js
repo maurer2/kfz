@@ -1,5 +1,5 @@
 class LicencePlate {
-  constructor(key, { district = '', state = '', country = 'de' }, isCurrent) {
+  constructor(key, { district = "", state = "", country = "de" }, isCurrent) {
     this.key = key;
     this.district = district;
     this.state = state;
@@ -7,7 +7,7 @@ class LicencePlate {
     this.country = country;
 
     if (this.key.length > 3) {
-      throw new Error('LicencePlate length error');
+      throw new Error("LicencePlate length error");
     }
   }
 
