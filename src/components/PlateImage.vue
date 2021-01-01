@@ -66,12 +66,22 @@
     <text
       x="50%"
       y="50%"
-      alignment-baseline="middle"
       text-anchor="middle"
+      dominant-baseline="middle"
       fill="000"
       font-size="100"
     >
       {{ plate }}
+    </text>
+    <text
+      x="95%"
+      y="50%"
+      text-anchor="end"
+      dominant-baseline="middle"
+      fill="lightgrey"
+      font-size="100"
+    >
+      E
     </text>
   </svg>
 </template>
