@@ -53,7 +53,9 @@
       c-1.4,1.799-2.2,4-2.2,6.199v89.9c0,5.5,4.5,10,10,10h471h471c5.5,0,10-4.5,10-10v-364.4C962,408.75,961,406.25,959.1,404.35z"
           />
         </svg>
-        <span class="media-content text">{{ plate.isCurrent }}</span>
+        <span class="media-content text">
+          {{ plate.isCurrent ? 'Still used' : 'Not used anymore' }}
+        </span>
       </div>
     </div>
   </a>
