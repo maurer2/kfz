@@ -39,8 +39,9 @@ class List {
       return index === firstIndex;
     });
     */
-    this.entries = entriesSorted;
 
+    this.entries = [...entriesSorted]
+    this.entriesRestore = [...entriesSorted]
     this.position = 0;
   }
 
@@ -62,7 +63,7 @@ class List {
     const lettersSingle = this.entries.map(entry => entry.getLetterAtPosition(this.position));
     const lettersSingleSorted = lettersSingle.slice().sort(); // alphabetically
 
-    // true for first occurence in array // indexof returns first index of element found
+    // true for first occurrence in array // indexOf returns first index of element found
     const lettersUnique = lettersSingleSorted.filter(
       (value, index, array) => array.indexOf(value) === index
     );
@@ -78,7 +79,7 @@ class List {
   }
 
   resetList() {
-    this.entries = this.entriesAll;
+    this.entries = [...this.entriesRestore]
     this.position = 0;
   }
 }
