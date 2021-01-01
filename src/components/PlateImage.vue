@@ -68,6 +68,7 @@
       y="50%"
       alignment-baseline="middle"
       text-anchor="middle"
+      dominant-baseline="middle"
       fill="000"
       font-size="100"
     >
