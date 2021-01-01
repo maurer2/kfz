@@ -2,9 +2,10 @@
   <ul class="plateslist">
     <li
       class="plateslist-entry"
-      v-for="(entry, index) in entries"
+      v-for="(entry, index) in entriesUnique"
       :key="entry.key"
       @click.prevent="toggleActiveEntry(index)"
+      :data-test="entry.key"
     >
       <plate :plate="entry" :isExpanded="isActiveEntry(index)"></plate>
     </li>
@@ -32,7 +33,17 @@ export default {
   },
   computed: {
     numEntries() {
-      return this.entries.length;
+      return this.entriesUnique.length;
+    },
+    entriesUnique() {
+      const entriesDeduped = this.entries.filter((entry, index, entriesArray) => {
+        const { key } = entry;
+        const indexOfFirstOccurenceOfKey = entriesArray.findIndex((entryInner) => key === entryInner.key)
+
+        return index === indexOfFirstOccurenceOfKey
+      })
+
+      return entriesDeduped;
     }
   },
   methods: {
