@@ -1,4 +1,10 @@
 class LicencePlate {
+  key: string;
+  district: string;
+  state: string;
+  isCurrent: boolean;
+  country: string;
+
   constructor(key, { district = "", state = "", country = "de" }, isCurrent) {
     this.key = key;
     this.district = district;
@@ -27,7 +33,7 @@ class LicencePlate {
     return this.isCurrent;
   }
 
-  getLetterAtPosition(position) {
+  getLetterAtPosition(position: number) {
     return this.key.charAt(position);
   }
 
@@ -35,7 +41,7 @@ class LicencePlate {
     return this.key.charAt(0) === letter.charAt(0);
   }
 
-  hasLetterAtPosition(position, letter) {
+  hasLetterAtPosition(position: number, letter: string) {
     if (position > this.key.length) {
       return false;
     }

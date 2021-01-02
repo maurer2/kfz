@@ -1,5 +1,5 @@
 // Imports
-const ListProvider = require("./list.js");
+const ListProvider = require("./list.ts");
 
 // Main
 // const key = process.argv[2] || 'blk'

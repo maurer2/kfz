@@ -3,6 +3,10 @@ import licenceOldJSON from "../assets/de-outdated.json";
 import Plate from "./Plate";
 
 class List {
+  entries: any[]
+  entriesRestore: any[]
+  position: number;
+
   constructor() {
     const entriesCurrent = Object.keys(licenceJSON).map(key => {
       const entry = new Plate(key, licenceJSON[key], true);
@@ -19,8 +23,8 @@ class List {
 
     // sorting
     const entriesSorted = entriesAll.slice().sort((current, next) => {
-      const currentKey = current.key;
-      const nextKey = next.key;
+      const currentKey = (current as any).key;
+      const nextKey = (next as any).key;
 
       return currentKey.localeCompare(nextKey);
     });
@@ -53,7 +57,7 @@ class List {
     return this.entries;
   }
 
-  getEntriesWithLetter(letter) {
+  getEntriesWithLetter(letter: string) {
     const filteredEntries = this.entries.filter(entry => entry.startsWith(letter));
 
     return filteredEntries;
@@ -71,7 +75,7 @@ class List {
     return lettersUnique;
   }
 
-  filterList(letter) {
+  filterList(letter: string) {
     this.entries = this.entries.filter(entry => entry.hasLetterAtPosition(this.position, letter));
     this.position = this.position + 1;
 
