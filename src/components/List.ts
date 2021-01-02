@@ -2,9 +2,22 @@ import licenceJSON from "../assets/de.json";
 import licenceOldJSON from "../assets/de-outdated.json";
 import Plate from "./Plate";
 
-class List {
-  entries: any[]
-  entriesRestore: any[]
+interface ListType {
+  entries: any[];
+  entriesRestore: any[];
+  position: number;
+
+  getCurrentSize(): number;
+  getEntries(): any;
+  getEntriesWithLetter(letter: string): any;
+  getUniqueLetters(): any;
+  filterList(letter: string): any;
+  resetList(): void
+}
+
+class List implements ListType {
+  entries: any[];
+  entriesRestore: any[];
   position: number;
 
   constructor() {

@@ -1,3 +1,19 @@
+
+interface LicencePlate {
+  key: string;
+  district: string;
+  state: string;
+  isCurrent: boolean;
+  country: string;
+
+  getPlate(): string;
+  getDistrict(): string;
+  getState(): string;
+  getLetterAtPosition(position: number): string;
+  startsWith(letter: string): boolean;
+  hasLetterAtPosition(position: number, letter: string): boolean;
+}
+
 class LicencePlate {
   key: string;
   district: string;
@@ -37,7 +53,7 @@ class LicencePlate {
     return this.key.charAt(position);
   }
 
-  startsWith(letter) {
+  startsWith(letter: string) {
     return this.key.charAt(0) === letter.charAt(0);
   }
 
