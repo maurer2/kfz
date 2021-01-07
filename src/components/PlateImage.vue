@@ -1,7 +1,20 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650.31 126.72" class="svg">
-    <use :xlink:href="require('@/assets/plate.svg') + '#bg'"/>
+    <use :href="background" />
+    <text
+      id="text"
+      x="50%"
+      y="50%"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      fill="000"
+      font-size="100"
+    >
+      {{ plate }}
+    </text>
+    <use :href="electricSign" />
   </svg>
+
 </template>
 
 <script>
@@ -15,7 +28,8 @@ export default {
   },
   data() {
     return {
-      // background: require('../assets/svgdefs.svg') + '#icon-headphones'
+      background: `${require('../assets/plate.svg')}#background`,
+      electricSign: `${require('../assets/plate.svg')}#electric-sign`
     }
   }
 };
