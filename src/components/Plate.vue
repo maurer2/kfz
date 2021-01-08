@@ -70,16 +70,16 @@ export default {
   props: {
     plate: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     isExpanded: {
       type: Boolean,
-      default: false
+      default: false,
     }
   },
   data() {
     return {
-      height: 0
+      height: 0,
     };
   },
   watch: {
@@ -94,33 +94,31 @@ export default {
   computed: {
     bodyHeight() {
       return `${this.height}px`;
-    }
+    },
   }
 };
 </script>
 
 <style lang="scss" scoped>
+$spacing: 1rem;
+
 .card {
   display: block;
-  padding: 1rem;
+  padding: 0;
   background: #fff;
   color: #000;
   text-decoration: none;
   user-select: none;
-
-  &--is-expanded {
-    background: #d1e4fa;
-  }
 }
 
-.card-header {
-}
+.card-header {}
 
 .card-body {
   height: 0;
   visibility: hidden;
   text-align: left;
   transition: height 0.25s;
+  overflow: hidden;
 
   .card--is-expanded & {
     height: auto;

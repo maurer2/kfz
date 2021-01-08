@@ -92,7 +92,7 @@ export default {
 
 .main {
   flex-grow: 1;
-  background: black;
+  background: white;
 }
 
 .footer {

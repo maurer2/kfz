@@ -21,14 +21,14 @@ export default {
   props: {
     entries: {
       type: Array,
-      default: () => []
+      default: () => [],
     }
   },
   data() {
     return {
       numberOfItemsPerRow: 4,
       expandedRow: 0,
-      activeEntry: -1
+      activeEntry: -1,
     };
   },
   computed: {
@@ -44,7 +44,7 @@ export default {
       })
 
       return entriesDeduped;
-    }
+    },
   },
   methods: {
     isActiveRow(index) {
@@ -72,26 +72,24 @@ export default {
     },
     resetList() {
       this.activeEntry = -1;
-    }
+    },
   }
 };
 </script>
 
 <style lang="scss" scoped>
-$spacing: 0.5rem;
-$number-of-items: 4;
+$spacing: 1rem;
 
 .plateslist {
-  display: flex;
-  margin: $spacing ($spacing * -1);
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  margin: $spacing;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $spacing;
+  // margin: $spacing ($spacing * -1);
 }
 
 .plateslist-entry {
-  margin: $spacing;
-  //flex-basis: calc(#{percentage(1/$number-of-items)} - #{$spacing * ($number-of-items - 1)});
-  flex-basis: calc(#{percentage(1 / $number-of-items)} - #{$spacing * 2});
+  margin: 0;
   overflow: hidden;
 }
 </style>
