@@ -82,14 +82,21 @@ $spacing: 1rem;
 
 .plateslist {
   display: grid;
-  margin: $spacing;
+  margin: $spacing - ($spacing / 2);
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: $spacing;
-  // margin: $spacing ($spacing * -1);
+
+  @supports (grid-gap: 10px) {
+    margin: $spacing;
+    grid-gap: $spacing;
+  }
 }
 
 .plateslist-entry {
-  margin: 0;
+  margin: $spacing / 2;
   overflow: hidden;
+
+  @supports (grid-gap: 10px) {
+    margin: 0;
+  }
 }
 </style>
