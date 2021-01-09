@@ -1,7 +1,7 @@
 <template>
   <a href="#0" class="card" :class="{ 'card--is-expanded': isExpanded }">
     <header class="card-header">
-      <PlateImage :plate="plate.key"></PlateImage>
+      <PlateImage :plate="plate.key" :is-current="plate.isCurrent"></PlateImage>
     </header>
     <div class="card-body" :style="{ height: bodyHeight }" ref="body">
       <div class="media">
@@ -15,12 +15,6 @@
           <use :href="svg.state" />
         </svg>
         <span class="media-content text">{{ plate.state }}</span>
-      </div>
-      <div class="media">
-        <div class="media-image icon"></div>
-        <span class="media-content text">
-          {{ plate.isCurrent ? "Still used" : "Not used anymore" }}
-        </span>
       </div>
     </div>
   </a>

@@ -1,6 +1,11 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650.31 126.72" class="svg">
-    <use :href="background" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 650.31 126.72"
+    class="svg"
+    :opacity="isCurrent ? false : '0.25'"
+  >
+    <use :href="svg.background" />
     <text
       id="text"
       x="50%"
@@ -12,9 +17,8 @@
     >
       {{ plate }}
     </text>
-    <use :href="electricSign" />
+    <use :href="svg.electricSign" />
   </svg>
-
 </template>
 
 <script>
@@ -24,13 +28,19 @@ export default {
     plate: {
       type: String,
       default: ""
+    },
+    isCurrent: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
-      background: `${require('../assets/plate.svg')}#background`,
-      electricSign: `${require('../assets/plate.svg')}#electric-sign`
-    }
+      svg: {
+        background: `${require("../assets/plate.svg")}#background`,
+        electricSign: `${require("../assets/plate.svg")}#electric-sign`
+      }
+    };
   }
 };
 </script>
