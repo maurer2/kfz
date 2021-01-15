@@ -3,7 +3,7 @@
     <header class="card-header">
       <PlateImage :plate="plate.key" :is-current="plate.isCurrent"></PlateImage>
     </header>
-    <div class="card-body" :style="{ height: bodyHeight }" ref="body">
+    <div class="card-body" ref="body">
       <div class="media">
         <svg class="media-image icon">
           <use :href="svg.city" />
@@ -22,7 +22,6 @@
 
 <script>
 import PlateImage from "./PlateImage";
-// import IconCity from "../assets/icon-city.svg";
 
 export default {
   name: "Plate",
@@ -43,32 +42,43 @@ export default {
   },
   data() {
     return {
-      height: 0,
       svg: {
         city: `${require("../assets/sprite.svg")}#city`,
         state: `${require("../assets/sprite.svg")}#state`
       }
     };
-  },
-  watch: {
-    isExpanded() {
-      if (this.isExpanded) {
-        this.height = this.$refs.body.scrollHeight;
-      } else {
-        this.height = 0;
-      }
-    }
-  },
-  computed: {
-    bodyHeight() {
-      return `${this.height}px`;
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 $spacing: 1rem;
+
+@keyframes slide-in-from-hidden {
+  0% {
+    display: none;
+    transform: translateY(-100%);
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out-to-hidden {
+  0% {
+    display: block;
+    transform: translateY(0);
+  }
+  99% {
+    display: none;
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
 
 .card {
   display: block;
@@ -77,21 +87,26 @@ $spacing: 1rem;
   color: #000;
   text-decoration: none;
   user-select: none;
+  overflow: hidden;
 }
 
 .card-header {
+  position: relative;
+  z-index: 1;
 }
 
 .card-body {
-  height: 0;
-  visibility: hidden;
+  display: none;
   text-align: left;
-  transition: height 0.25s;
-  overflow: hidden;
+  // animation: slide-out-to-hidden 0.5s;
+  will-change: transform;
+  // transform: translateY(-100%);
+  // transition: transform 1s;
 
   .card--is-expanded & {
-    height: auto;
-    visibility: visible;
+    display: block;
+    animation: slide-in-from-hidden 0.5s;
+    // transform: translateY(0%);
   }
 }
 

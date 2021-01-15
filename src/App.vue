@@ -1,12 +1,12 @@
 <template>
   <div id="root">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: "App"
 };
 </script>
 
@@ -16,6 +16,10 @@ body {
   margin: 0;
   height: 100%;
   background: #fff;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 *,
@@ -46,7 +50,7 @@ a {
 #root {
   margin: 0;
   height: 100%;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -54,12 +58,12 @@ a {
 
 @font-face {
   font-family: plateFontOld;
-  src: url('./assets/fontOld.woff');
+  src: url("./assets/fontOld.woff");
 }
 
 @font-face {
   font-family: plateFontNew;
-  src: url('./assets/fontNew.woff');
+  src: url("./assets/fontNew.woff");
 }
 
 .media {
