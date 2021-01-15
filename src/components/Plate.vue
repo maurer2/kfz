@@ -2,13 +2,15 @@
   <a
     href="#0"
     class="card"
-    :class="{ 'card--is-expanded': isExpanded, 'card--has-slide-out-animation': hasBeenToggled }"
+    :class="{
+      'card--is-expanded': isExpanded,
+      'card--has-been-toggled': hasBeenToggled
+    }"
   >
     <header class="card-header">
       <PlateImage :plate="plate.key" :is-current="plate.isCurrent"></PlateImage>
     </header>
-    <div class="card-body" ref="body">
-      {{ hasBeenToggled }}
+    <div class="card-body">
       <div class="media">
         <svg class="media-image icon">
           <use :href="svg.city" />
@@ -80,22 +82,8 @@ $spacing: 1rem;
   }
 }
 
-@keyframes slide-out-to-hidden {
-  0% {
-    display: block;
-    transform: translateY(0);
-  }
-  99% {
-    display: none;
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
 .card {
   display: block;
-  padding: 0;
   background: #fff;
   color: #000;
   text-decoration: none;
@@ -111,34 +99,35 @@ $spacing: 1rem;
 .card-body {
   display: none;
   text-align: left;
-  animation: slide-out-to-hidden 0.5s;
   will-change: transform;
-  // transform: translateY(-100%);
-  // transition: transform 1s;
-
-  .card--has-slide-out-animation & {
-    animation: slide-in-from-hidden 0.5s;
-  }
 
   .card--is-expanded & {
     display: block;
-    // transform: translateY(0%);
+    margin-top: 0.5rem;
+  }
+
+  .card--is-expanded.card--has-been-toggled & {
+    animation: slide-in-from-hidden 0.5s;
   }
 }
 
 .media {
+  display: flex;
+  align-items: center;
+}
+
+.media + .media {
   margin-top: 0.5rem;
 }
 
 .icon {
   width: 1rem;
   height: 1rem;
-  padding-right: 0.5rem;
-  box-sizing: content-box;
-  flex-shrink: 0;
-  flex-grow: 0;
+  margin-right: 0.5rem;
+  flex: 0 0 auto;
 }
 
 .text {
+  font-weight: bold;
 }
 </style>
