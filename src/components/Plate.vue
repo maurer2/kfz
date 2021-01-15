@@ -1,9 +1,14 @@
 <template>
-  <a href="#0" class="card" :class="{ 'card--is-expanded': isExpanded }">
+  <a
+    href="#0"
+    class="card"
+    :class="{ 'card--is-expanded': isExpanded, 'card--has-slide-out-animation': hasBeenToggled }"
+  >
     <header class="card-header">
       <PlateImage :plate="plate.key" :is-current="plate.isCurrent"></PlateImage>
     </header>
     <div class="card-body" ref="body">
+      {{ hasBeenToggled }}
       <div class="media">
         <svg class="media-image icon">
           <use :href="svg.city" />
@@ -42,11 +47,19 @@ export default {
   },
   data() {
     return {
+      hasBeenToggled: false,
       svg: {
         city: `${require("../assets/sprite.svg")}#city`,
         state: `${require("../assets/sprite.svg")}#state`
       }
     };
+  },
+  watch: {
+    isExpanded(newIsExpanded, oldIsExpanded) {
+      if (newIsExpanded !== oldIsExpanded) {
+        this.hasBeenToggled = true;
+      }
+    }
   }
 };
 </script>
@@ -98,14 +111,17 @@ $spacing: 1rem;
 .card-body {
   display: none;
   text-align: left;
-  // animation: slide-out-to-hidden 0.5s;
+  animation: slide-out-to-hidden 0.5s;
   will-change: transform;
   // transform: translateY(-100%);
   // transition: transform 1s;
 
+  .card--has-slide-out-animation & {
+    animation: slide-in-from-hidden 0.5s;
+  }
+
   .card--is-expanded & {
     display: block;
-    animation: slide-in-from-hidden 0.5s;
     // transform: translateY(0%);
   }
 }
