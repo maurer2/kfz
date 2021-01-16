@@ -83,16 +83,25 @@ export default {
 <style lang="scss" scoped>
 .nav {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
-  background: black;
 }
 
 .nav-entry {
+  margin: 0;
   padding: 10px 0;
+  flex: 1 1 0;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
   background: #fff;
-  flex-grow: 1;
-  flex-basis: 0;
+
+  &:first-child {
+    border-left: 1px solid black;
+  }
 
   &--is-inactive {
     color: #c2c2c2;
