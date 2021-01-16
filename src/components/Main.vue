@@ -12,7 +12,6 @@
       ></Navigation>
       <List :entries="keyList.entries"></List>
     </main>
-    <footer class="footer">Footer</footer>
   </div>
 </template>
 
