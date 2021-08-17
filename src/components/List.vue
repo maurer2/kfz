@@ -7,6 +7,7 @@
       @click.prevent="toggleActiveEntry(index)"
       :data-test="entry.key"
     >
+      {{ entry.key }}
       <plate :plate="entry" :isExpanded="isActiveEntry(index)"></plate>
     </li>
   </ul>
@@ -21,14 +22,14 @@ export default {
   props: {
     entries: {
       type: Array,
-      default: () => [],
+      default: () => []
     }
   },
   data() {
     return {
       numberOfItemsPerRow: 4,
       expandedRow: 0,
-      activeEntry: -1,
+      activeEntry: -1
     };
   },
   computed: {
@@ -38,13 +39,15 @@ export default {
     entriesUnique() {
       const entriesDeduped = this.entries.filter((entry, index, entriesArray) => {
         const { key } = entry;
-        const indexOfFirstOccurenceOfKey = entriesArray.findIndex((entryInner) => key === entryInner.key)
+        const indexOfFirstOccurenceOfKey = entriesArray.findIndex(
+          entryInner => key === entryInner.key
+        );
 
-        return index === indexOfFirstOccurenceOfKey
-      })
+        return index === indexOfFirstOccurenceOfKey;
+      });
 
       return entriesDeduped;
-    },
+    }
   },
   methods: {
     isActiveRow(index) {
@@ -72,7 +75,7 @@ export default {
     },
     resetList() {
       this.activeEntry = -1;
-    },
+    }
   }
 };
 </script>

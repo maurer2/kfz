@@ -12,13 +12,14 @@ interface ListType {
   getEntriesWithLetter(letter: string): any;
   getUniqueLetters(): any;
   filterList(letter: string): any;
-  resetList(): void
+  resetList(): void;
 }
 
 class List implements ListType {
   entries: any[];
   entriesRestore: any[];
   position: number;
+  testList: any[];
 
   constructor() {
     const entriesCurrent = Object.keys(licenceJSON).map(key => {
@@ -57,9 +58,11 @@ class List implements ListType {
     });
     */
 
-    this.entries = [...entriesSorted]
-    this.entriesRestore = [...entriesSorted]
+    this.entries = [...entriesSorted];
+    this.entriesRestore = [...entriesSorted];
     this.position = 0;
+
+    this.testList = [[...entriesSorted][0]];
   }
 
   getCurrentSize() {
@@ -71,6 +74,10 @@ class List implements ListType {
   }
 
   getEntriesWithLetter(letter: string) {
+    if (letter === "") {
+      return this.entriesRestore;
+    }
+
     const filteredEntries = this.entries.filter(entry => entry.startsWith(letter));
 
     return filteredEntries;
@@ -92,11 +99,19 @@ class List implements ListType {
     this.entries = this.entries.filter(entry => entry.hasLetterAtPosition(this.position, letter));
     this.position = this.position + 1;
 
-    return this.entries;
+    return [...this.entries];
   }
 
   resetList() {
-    this.entries = [...this.entriesRestore]
+    // this.entries = [...this.entriesRestore];
+
+    // this.entries = this.testList;
+
+    const test = this.getEntriesWithLetter("");
+
+    console.log(test);
+
+    this.entries = this.getEntriesWithLetter("");
     this.position = 0;
   }
 }
