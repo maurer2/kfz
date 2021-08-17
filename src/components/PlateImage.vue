@@ -34,11 +34,12 @@ export default {
       default: true
     }
   },
+  inject: ["svgURLs"],
   data() {
     return {
       svg: {
-        background: `${require("../assets/plate.svg")}#background`,
-        electricSign: `${require("../assets/plate.svg")}#electric-sign`
+        background: this.svgURLs.background,
+        electricSign: this.svgURLs.electricSign
       }
     };
   }
