@@ -8,10 +8,8 @@
 export default {
   name: "App",
   provide: {
-    svgURLs: {
-      background: `${require("./assets/plate.svg")}#background`,
-      electricSign: `${require("./assets/plate.svg")}#electric-sign`
-    }
+    background: `${require("./assets/plate.svg")}#background`,
+    electricSign: `${require("./assets/plate.svg")}#electric-sign`
   },
   mounted() {
     console.log("mounted");

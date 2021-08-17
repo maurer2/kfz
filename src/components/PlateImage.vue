@@ -5,7 +5,7 @@
     class="svg"
     :opacity="isCurrent ? false : '0.25'"
   >
-    <use :href="svg.background" />
+    <use :href="background" />
     <text
       id="text"
       x="50%"
@@ -17,7 +17,7 @@
     >
       {{ plate }}
     </text>
-    <use :href="svg.electricSign" />
+    <use :href="electricSign" />
   </svg>
 </template>
 
@@ -34,15 +34,7 @@ export default {
       default: true
     }
   },
-  inject: ["svgURLs"],
-  data() {
-    return {
-      svg: {
-        background: this.svgURLs.background,
-        electricSign: this.svgURLs.electricSign
-      }
-    };
-  }
+  inject: ["background", "electricSign"]
 };
 </script>
 
