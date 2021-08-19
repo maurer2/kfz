@@ -13,12 +13,15 @@ interface ListType {
   getUniqueLetters(): any;
   filterList(letter: string): any;
   resetList(): void;
+  activeKeys: string[];
 }
 
 class List implements ListType {
-  entries: any[];
-  entriesRestore: any[];
+  entries: Plate[];
+  entriesRestore: Plate[];
   position: number;
+  activeKeys: string[];
+  entriesAll: Readonly<Plate[]>;
 
   constructor() {
     const entriesCurrent = Object.keys(licenceJSON).map(key => {
@@ -59,7 +62,9 @@ class List implements ListType {
 
     this.entries = [...entriesSorted];
     this.entriesRestore = [...entriesSorted];
+    this.entriesAll = Object.freeze([...entriesSorted]);
     this.position = 0;
+    this.activeKeys = this.entries.map(entry => entry.key);
   }
 
   getCurrentSize() {
@@ -89,8 +94,15 @@ class List implements ListType {
   }
 
   filterList(letter: string) {
-    this.entries = this.entries.filter(entry => entry.hasLetterAtPosition(this.position, letter));
+    const entriesFiltered = this.entries.filter(entry =>
+      entry.hasLetterAtPosition(this.position, letter)
+    );
+
+    this.entries = entriesFiltered;
     this.position = this.position + 1;
+
+    const keysOfFilteredEntries = entriesFiltered.map(entry => entry.key);
+    this.activeKeys = keysOfFilteredEntries;
 
     return this.entries;
   }
@@ -98,6 +110,7 @@ class List implements ListType {
   resetList() {
     this.entries = [...this.entriesRestore];
     this.position = 0;
+    this.activeKeys = this.entries.map(entry => entry.key);
   }
 }
 

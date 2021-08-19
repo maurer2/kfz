@@ -6,8 +6,8 @@
       :key="entry.key"
       @click.prevent="toggleActiveEntry(index)"
       :data-test="entry.key"
+      v-show="isVisibileEntry(entry.key)"
     >
-      {{ entry.key }}
       <plate :plate="entry" :isExpanded="isActiveEntry(index)"></plate>
     </li>
   </ul>
@@ -21,6 +21,10 @@ export default {
   components: { Plate },
   props: {
     entries: {
+      type: Array,
+      default: () => []
+    },
+    activeKeys: {
       type: Array,
       default: () => []
     }
@@ -58,6 +62,9 @@ export default {
     },
     isActiveEntry(index) {
       return index === this.activeEntry;
+    },
+    isVisibileEntry(key) {
+      return this.activeKeys.includes(key);
     },
     activateRow(index) {
       this.expandedRow = Math.floor(index / this.numberOfItemsPerRow);

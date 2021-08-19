@@ -6,11 +6,8 @@
       <button class="button" type="button" @click="resetList()">Reset</button>
     </header>
     <main class="main">
-      <Navigation
-        :availableLetters="keyList.getUniqueLetters()"
-        @button-activated="selectLetter"
-      ></Navigation>
-      <List :entries="keyList.entries"></List>
+      <Navigation :availableLetters="keyList.getUniqueLetters()" @button-activated="selectLetter" />
+      <List :entries="entriesAll" :activeKeys="activeKeys" />
     </main>
   </div>
 </template>
@@ -38,6 +35,12 @@ export default {
       const text = this.hasSearched ? this.selectedLetters.join("-") : "";
 
       return text;
+    },
+    activeKeys() {
+      return this.keyList.activeKeys;
+    },
+    entriesAll() {
+      return this.keyList.entriesAll;
     }
   },
   methods: {
